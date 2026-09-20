@@ -75,7 +75,7 @@ export default function Header() {
                 href={link.href}
                 target={link.external ? "_blank" : undefined}
                 rel={link.external ? "noopener noreferrer" : undefined}
-                className="font-mono text-xs text-muted hover:text-signal-red transition-colors duration-300 relative group overflow-hidden flex items-start gap-1 py-0.5"
+                className="font-dot text-sm text-muted hover:text-signal-red transition-colors duration-300 relative group overflow-hidden flex items-start gap-1 py-0.5"
               >
                 <span>{link.label}</span>
                 {link.external && (
