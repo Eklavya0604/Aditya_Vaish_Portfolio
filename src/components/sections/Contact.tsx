@@ -48,18 +48,30 @@ export default function Contact() {
       ref={sectionRef}
       className="w-full bg-white text-black py-24 md:py-40 px-4 md:px-8 lg:px-12 relative"
     >
-      <div className="max-w-[1440px] mx-auto w-full grid grid-cols-4 md:grid-cols-12 gap-8 md:gap-16">
-        <div className="col-span-4 md:col-span-3 flex flex-col gap-6">
-          <h2 className="contact-fade font-dot text-3xl md:text-5xl uppercase tracking-tight text-black">
+      <div className="max-w-[1440px] mx-auto w-full flex flex-col gap-16">
+        {/* Section start heading */}
+        <div className="contact-fade flex flex-col gap-4">
+          <h2 className="font-dot text-3xl md:text-5xl uppercase tracking-tight text-black">
             04<br />
             <span className="text-signal-red">Connect Me</span>
           </h2>
-          <div className="contact-fade font-mono text-[10px] text-black/60 tracking-widest uppercase mt-4">
-            SYS // CONTACT_FORM
+          <div className="font-mono text-[10px] text-black/60 tracking-widest uppercase">
+            SYS // CONTACT
           </div>
         </div>
 
-        <div className="col-span-4 md:col-span-6 md:col-start-5 flex flex-col gap-12">
+        {/* Content grid */}
+        <div className="grid grid-cols-4 md:grid-cols-12 gap-8 md:gap-16">
+          <div className="col-span-4 md:col-span-3">
+            <h3
+              className="contact-fade text-4xl md:text-5xl lg:text-6xl leading-[1] tracking-tight text-black"
+              style={{ fontFamily: "var(--font-ntype82)" }}
+            >
+              Let&apos;s Build<br />Together<span className="text-signal-red">.</span>
+            </h3>
+          </div>
+
+          <div className="col-span-4 md:col-span-6 md:col-start-5 flex flex-col gap-12">
           <p className="contact-fade font-sans text-xl md:text-2xl font-medium leading-tight text-black">
             Looking for a technical partner or just want to discuss an idea? Send a transmission below.
           </p>
@@ -72,7 +84,7 @@ export default function Contact() {
                 id="name"
                 required
                 className="w-full bg-transparent border-b border-black/20 pb-2 font-sans text-base text-black focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-black/30"
-                placeholder="John Doe"
+                placeholder="Aditya"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -82,7 +94,7 @@ export default function Contact() {
                 id="email"
                 required
                 className="w-full bg-transparent border-b border-black/20 pb-2 font-sans text-base text-black focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-black/30"
-                placeholder="john@example.com"
+                placeholder="aditya@example.com"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -112,6 +124,7 @@ export default function Contact() {
               </button>
             </div>
           </form>
+          </div>
         </div>
       </div>
     </section>
