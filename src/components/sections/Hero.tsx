@@ -67,11 +67,8 @@ export default function Hero() {
         {/* Main Typography Column */}
         <div className="flex flex-col justify-center">
 
-          <h1 className="hero-stagger text-[clamp(3.5rem,10vw,8rem)] leading-[0.95] font-bold tracking-tighter uppercase mb-8 md:mb-12 text-black">
+          <h1 className="hero-stagger font-tech text-[clamp(3.5rem,10vw,8rem)] leading-[0.95] font-bold tracking-[0.02em] uppercase mb-8 md:mb-12 text-black">
             Aditya<br />
-            <span className="text-transparent bg-clip-text" style={{ WebkitTextStroke: '1px var(--color-black)' }}>
-              Kumar
-            </span><br />
             Vaish
           </h1>
 
