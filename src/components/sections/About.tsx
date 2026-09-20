@@ -18,6 +18,7 @@ function IdeasToProductFlow() {
   const circleGroupRef = useRef<SVGGElement>(null);
   const circlePathRef = useRef<SVGPathElement>(null);
   const arrowPathRef = useRef<SVGPathElement>(null);
+  const arrowHeadPosRef = useRef<SVGGElement>(null);
   const arrowHeadRef = useRef<SVGPolygonElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
@@ -27,6 +28,7 @@ function IdeasToProductFlow() {
       !circlePathRef.current ||
       !circleGroupRef.current ||
       !arrowPathRef.current ||
+      !arrowHeadPosRef.current ||
       !srcWordRef.current ||
       !tgtWordRef.current
     ) {
@@ -39,7 +41,7 @@ function IdeasToProductFlow() {
     const tgtRect = tgtWordRef.current.getBoundingClientRect();
 
     // Padding around the source word "ideas"
-    const paddingX = 8;
+    const paddingX = 0;
     const paddingY = 4;
 
     const srcBounds = {
@@ -101,13 +103,13 @@ function IdeasToProductFlow() {
     arrowPathRef.current.style.strokeDasharray = `${arrowLen}`;
 
     // 3. Position and rotate arrowhead polygon at the exact tangent of the arc endpoint
-    if (arrowHeadRef.current && arrowLen > 0) {
+    if (arrowHeadPosRef.current && arrowLen > 0) {
       const pEnd = arrowPathRef.current.getPointAtLength(arrowLen);
-      const pPrev = arrowPathRef.current.getPointAtLength(Math.max(0, arrowLen - 3));
+      const pPrev = arrowPathRef.current.getPointAtLength(Math.max(0, arrowLen - 1));
       const angleRad = Math.atan2(pEnd.y - pPrev.y, pEnd.x - pPrev.x);
       const angleDeg = (angleRad * 180) / Math.PI;
 
-      arrowHeadRef.current.setAttribute(
+      arrowHeadPosRef.current.setAttribute(
         "transform",
         `translate(${pEnd.x}, ${pEnd.y}) rotate(${angleDeg})`
       );
@@ -144,7 +146,7 @@ function IdeasToProductFlow() {
     gsap.set(arrowHead, {
       opacity: 0,
       scale: 0,
-      transformOrigin: "0 0",
+      transformOrigin: "8px 4px",
     });
     gsap.set(tgtWord, {
       color: "inherit",
@@ -241,11 +243,11 @@ function IdeasToProductFlow() {
     <div ref={containerRef} className="relative pt-3 pb-1">
       <p className="text-black/70 text-base md:text-lg leading-relaxed">
         <span className="inline-block whitespace-nowrap font-medium text-black">
-          I convert{"  "}
+          I convert{" "}
           <span
             ref={srcWordRef}
             onClick={playAnimation}
-            className="relative inline-block font-semibold text-black px-1 cursor-pointer select-none"
+            className="relative inline-block font-semibold text-black px-1 mx-1 cursor-pointer select-none"
             title="Click to replay"
           >
             ideas
@@ -254,7 +256,7 @@ function IdeasToProductFlow() {
           <span
             ref={tgtWordRef}
             onClick={playAnimation}
-            className="relative inline-block font-semibold px-1 cursor-pointer select-none transition-colors duration-300 text-signal-red"
+            className="relative inline-block font-semibold px-1 mx-1 cursor-pointer select-none transition-colors duration-300 text-signal-red"
             title="Click to replay"
           >
             products
@@ -298,13 +300,18 @@ function IdeasToProductFlow() {
         />
 
         {/* Arrowhead polygon positioned and rotated at arc endpoint */}
-        <polygon
-          ref={arrowHeadRef}
-          className="arrow-head"
-          points="-8,-4 0,0 -8,4"
-          fill="#E60012"
-          style={{ opacity: 0 }}
-        />
+        <g ref={arrowHeadPosRef}>
+          <polygon
+            ref={arrowHeadRef}
+            className="arrow-head"
+            points="-6,-4 2,0 -6,4"
+            fill="#E60012"
+            stroke="#E60012"
+            strokeWidth="1.5"
+            strokeLinejoin="round"
+            style={{ opacity: 0 }}
+          />
+        </g>
       </svg>
     </div>
   );
