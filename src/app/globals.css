@@ -9,14 +9,14 @@
 
 @font-face {
   font-family: 'DotMatrix';
-  src: url('/fonts/DOTMATRX.TTF') format('truetype');
+  src: url('/fonts/DotMatrix/DOTMATRX.TTF') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'DotMatrix';
-  src: url('/fonts/DotMatrix_TR.TTF') format('truetype');
+  src: url('/fonts/DotMatrix/DotMatrix_TR.TTF') format('truetype');
   font-weight: 700;
   font-style: normal;
 }

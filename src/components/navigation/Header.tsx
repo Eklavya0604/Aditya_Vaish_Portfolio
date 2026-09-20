@@ -62,7 +62,7 @@ export default function Header() {
           {/* Logo / Identity */}
           <Link href="/" className="group flex items-center gap-4">
             <div className="w-3 h-3 bg-black group-hover:bg-signal-red transition-colors duration-300" />
-            <span className="font-tech text-sm uppercase tracking-widest text-black group-hover:text-signal-red transition-colors duration-300">
+            <span className="text-sm uppercase tracking-widest text-black group-hover:text-signal-red transition-colors duration-300" style={{ fontFamily: "'DotMatrix', monospace" }}>
               Aditya Kumar Vaish
             </span>
           </Link>
