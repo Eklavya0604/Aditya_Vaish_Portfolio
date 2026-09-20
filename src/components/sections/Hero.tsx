@@ -67,11 +67,11 @@ export default function Hero() {
         {/* Main Typography Column */}
         <div className="col-span-4 md:col-span-8 lg:col-span-9 flex flex-col justify-center">
           <h1 className="hero-stagger text-[clamp(2.5rem,8vw,8rem)] leading-[0.95] font-bold tracking-tighter uppercase mb-8 text-black">
-            Digital<br />
+            Aditya<br />
             <span className="text-transparent bg-clip-text" style={{ WebkitTextStroke: '1px var(--color-black)' }}>
-              Product
+              Kumar
             </span><br />
-            Engineer
+            Vaish
           </h1>
 
           <p className="hero-stagger font-sans text-muted text-[clamp(1rem,1.5vw,1.25rem)] max-w-xl leading-relaxed mb-12">
@@ -121,29 +121,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Technical Data Column */}
-        <div className="col-span-4 md:col-span-4 lg:col-span-3 flex flex-col justify-end md:pb-12 gap-12 mt-16 md:mt-0">
-          <div className="hero-stagger flex flex-col gap-2">
-            <span className="font-mono text-[10px] text-muted tracking-widest uppercase">Location</span>
-            <span className="font-tech text-sm text-black">EARTH // INDIA</span>
-          </div>
 
-          <div className="hero-stagger flex flex-col gap-2">
-            <span className="font-mono text-[10px] text-muted tracking-widest uppercase">Focus</span>
-            <span className="font-tech text-sm text-black">FRONTEND_SYS</span>
-            <span className="font-tech text-sm text-black">INTERFACE_DEV</span>
-            <span className="font-tech text-sm text-black">ANIMATION</span>
-          </div>
-
-          {/* Decorative Technical Element */}
-          <div className="hero-stagger mt-8 w-full h-32 border border-border flex items-end justify-end p-4 relative overflow-hidden group">
-             <div className="absolute top-0 left-0 w-2 h-2 border-b border-r border-signal-red m-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-             <div className="absolute bottom-0 right-0 w-2 h-2 border-t border-l border-signal-red m-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-             <span className="font-dot text-xs text-secondary group-hover:text-signal-red transition-colors duration-300">
-               NODE_READY
-             </span>
-          </div>
-        </div>
 
       </div>
     </section>

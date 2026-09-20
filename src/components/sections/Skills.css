@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+
+@layer stick, effect, scrollbar;
+
+@layer scrollbar {
+  @property --hue {
+    initial-value: 0;
+    syntax: '<number>';
+    inherits: false;
+  }
+
+  @property --chroma {
+    initial-value: 0;
+    syntax: '<number>';
+    inherits: true;
+  }
+
+  [data-sync-scrollbar='true'] {
+    scrollbar-color: oklch(var(--lightness) var(--chroma) var(--hue)) #0000;
+  }
+
+  @supports (animation-timeline: scroll()) and (animation-range: 0% 100%) {
+    [data-sync-scrollbar='true'][data-animate='true'] {
+      timeline-scope: --list;
+      scrollbar-color: oklch(var(--lightness) var(--chroma, 0) var(--hue)) #0000;
+      animation-name: change, chroma-on, chroma-off;
+      animation-fill-mode: both;
+      animation-timing-function: linear;
+      animation-range: entry 50% exit 50%, entry 40% entry 50%,
+        exit 30% exit 40%;
+      animation-timeline: --list;
+
+      ul {
+        view-timeline: --list;
+      }
+    }
+  }
+
+  @keyframes change {
+    to {
+      --hue: var(--end);
+    }
+  }
+
+  @keyframes chroma-on {
+    to {
+      --chroma: 0.3;
+    }
+  }
+
+  @keyframes chroma-off {
+    to {
+      --chroma: 0;
+    }
+  }
+}
+
+@layer effect {
+  .skills-wrapper {
+    --start: 0;
+    --end: 360;
+  }
+
+  /* 
+  Fallback for spectrum color rotation:
+  .skills-wrapper {
+    --lightness: 65%;
+    --base-chroma: 0.3;
+  }
+  [data-theme='dark'] .skills-wrapper {
+    --lightness: 75%;
+  }
+  [data-theme='light'] .skills-wrapper {
+    --lightness: 65%;
+  }
+  @media (prefers-color-scheme: dark) {
+    .skills-wrapper {
+      --lightness: 75%;
+    }
+  }
+  .skills-wrapper ul {
+    --step: calc((var(--end) - var(--start)) / (var(--count) - 1));
+  }
+  .skills-wrapper li:not(:last-of-type) {
+    color: oklch(var(--lightness) var(--base-chroma) calc(var(--start) + (var(--step) * var(--i))));
+  }
+  */
+
+  .skills-wrapper li {
+    color: #E60012;
+  }
+
+  @supports (animation-timeline: scroll()) and (animation-range: 0% 100%) {
+    .skills-wrapper[data-animate='true'] li {
+      opacity: 0.2;
+      animation-name: brighten;
+
+      &:first-of-type {
+        --start-opacity: 1;
+      }
+
+      &:last-of-type {
+        --brightness: 1;
+        --end-opacity: 1;
+      }
+
+      animation-fill-mode: both;
+      animation-timing-function: linear;
+      animation-range: cover calc(50% - 1lh) calc(50% + 1lh);
+      animation-timeline: view();
+    }
+
+    @keyframes brighten {
+      0% {
+        opacity: var(--start-opacity, 0.2);
+      }
+
+      50% {
+        opacity: 1;
+        filter: brightness(var(--brightness, 1.2));
+      }
+
+      100% {
+        opacity: var(--end-opacity, 0.2);
+      }
+    }
+  }
+}
+
+@layer stick {
+  .skills-wrapper section.sticky-section {
+    --font-level: 6;
+    display: flex;
+    line-height: 1.25;
+    width: 100%;
+    padding-left: 5rem;
+  }
+
+  .skills-wrapper section.sticky-section h2 {
+    position: sticky;
+    top: calc(50% - 0.5lh);
+    font-size: inherit;
+    margin: 0;
+    display: inline-block;
+    height: fit-content;
+    font-weight: 600;
+  }
+
+  .skills-wrapper ul {
+    font-weight: 600;
+    padding-inline: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  .skills-wrapper[data-snap='true'] {
+    scroll-snap-type: y proximity;
+  }
+  
+  .skills-wrapper[data-snap='true'] li {
+    scroll-snap-align: center;
+  }
+
+  .skills-wrapper section.sticky-section h2 {
+    background: linear-gradient(canvasText 50%,
+        color-mix(in oklch, canvas, canvasText 25%));
+    background-clip: text;
+    color: #0000;
+  }
+}
+
+.fluid {
+  --fluid-min: calc(14 * pow(1.1, var(--font-level, 0)));
+  --fluid-max: calc(20 * pow(1.33, var(--font-level, 0)));
+  --fluid-preferred: calc((var(--fluid-max) - var(--fluid-min)) / (1500 - 375));
+  --fluid-type: clamp((var(--fluid-min) / 16) * 1rem,
+      ((var(--fluid-min) / 16) * 1rem) - (((var(--fluid-preferred) * 375) / 16) * 1rem) + (var(--fluid-preferred) * 100vi),
+      (var(--fluid-max) / 16) * 1rem);
+  font-size: var(--fluid-type);
+}

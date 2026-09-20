@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Space_Mono } from "next/font/google";
 import CustomCursor from "@/components/ui/CustomCursor";
 import Loader from "@/components/ui/Loader";
+import '@/components/sections/Skills.css'
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
