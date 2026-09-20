@@ -344,7 +344,7 @@ export default function About() {
       <div className="max-w-[1440px] mx-auto w-full grid grid-cols-4 md:grid-cols-12 gap-8 md:gap-16">
         {/* Header / Meta */}
         <div className="col-span-4 md:col-span-3 flex flex-col gap-6">
-          <h2 className="about-fade font-tech text-3xl md:text-5xl uppercase tracking-tight text-black">
+          <h2 className="about-fade font-dot text-3xl md:text-5xl uppercase tracking-tight text-black">
             01<br />
             <span className="text-signal-red">About</span>
           </h2>

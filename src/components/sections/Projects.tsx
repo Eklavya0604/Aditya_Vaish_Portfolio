@@ -67,7 +67,7 @@ export default function Projects() {
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div>
-            <h2 className="font-tech text-3xl md:text-5xl uppercase tracking-tight mb-2 text-black">
+            <h2 className="font-dot text-3xl md:text-5xl uppercase tracking-tight mb-2 text-black">
               02<br />
               <span className="text-signal-red">Projects</span>
             </h2>

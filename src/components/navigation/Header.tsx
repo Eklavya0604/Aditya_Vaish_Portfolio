@@ -49,6 +49,7 @@ export default function Header() {
     { label: "02 / PROJECTS", href: "#projects" },
     { label: "03 / EXPERIENCE", href: "#experience" },
     { label: "04 / CONTACT", href: "#contact" },
+    { label: "05 / RESUME", href: "https://drive.google.com/file/d/10UXTvhUK6dMjz4Vu_8Ot5y3Szfonkr9s/view?usp=drive_link", external: true },
   ];
 
   return (
@@ -73,6 +74,8 @@ export default function Header() {
               <Link
                 key={link.label}
                 href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
                 className="font-mono text-xs text-muted hover:text-signal-red transition-colors duration-300 relative group overflow-hidden"
               >
                 {link.label}
@@ -119,7 +122,9 @@ export default function Header() {
               key={link.label}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="mobile-link font-tech text-2xl tracking-widest text-white hover:text-signal-red transition-colors duration-300 w-full text-center border-b border-border pb-4"
+              target={link.external ? "_blank" : undefined}
+              rel={link.external ? "noopener noreferrer" : undefined}
+              className="mobile-link font-dot text-2xl tracking-widest text-white hover:text-signal-red transition-colors duration-300 w-full text-center border-b border-border pb-4"
             >
               {link.label}
             </Link>
