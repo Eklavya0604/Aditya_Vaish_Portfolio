@@ -55,18 +55,19 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100svh] w-full flex flex-col justify-center px-4 md:px-8 lg:px-12 pt-20"
+      className="relative min-h-[80svh] md:min-h-[100svh] w-full flex flex-col justify-center px-4 md:px-8 lg:px-12 pt-28 md:pt-20 pb-12 md:pb-0"
     >
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{ backgroundImage: 'radial-gradient(var(--color-white) 1px, transparent 1px)', backgroundSize: '40px 40px' }}
       />
 
-      <div className="max-w-[1440px] mx-auto w-full grid grid-cols-4 md:grid-cols-12 gap-4 md:gap-8 relative z-10">
+      <div className="max-w-[1440px] mx-auto w-full relative z-10">
 
         {/* Main Typography Column */}
-        <div className="col-span-4 md:col-span-8 lg:col-span-9 flex flex-col justify-center">
-          <h1 className="hero-stagger text-[clamp(2.5rem,8vw,8rem)] leading-[0.95] font-bold tracking-tighter uppercase mb-8 text-black">
+        <div className="flex flex-col justify-center">
+
+          <h1 className="hero-stagger text-[clamp(3.5rem,10vw,8rem)] leading-[0.95] font-bold tracking-tighter uppercase mb-8 md:mb-12 text-black">
             Aditya<br />
             <span className="text-transparent bg-clip-text" style={{ WebkitTextStroke: '1px var(--color-black)' }}>
               Kumar
@@ -74,35 +75,31 @@ export default function Hero() {
             Vaish
           </h1>
 
-          <p className="hero-stagger font-sans text-muted text-[clamp(1rem,1.5vw,1.25rem)] max-w-xl leading-relaxed mb-12">
-            I architect and build technical interfaces. Minimalist by design,
-            engineered for precision. Specializing in React, Next.js, and
-            industrial UI systems.
-          </p>
-
-          <div className="hero-stagger flex flex-wrap items-center gap-x-6 gap-y-4 mb-12">
+          <div className="hero-stagger grid grid-cols-2 md:flex md:flex-wrap items-center gap-x-2 gap-y-6 md:gap-x-6 md:gap-y-4 mb-10 md:mb-12">
             {socials.map((social, idx) => (
-              <div key={social.name} className="flex items-center gap-6">
+              <div key={social.name} className="flex items-center md:gap-6">
                 <a
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-3"
+                  className="group flex items-center gap-2 md:gap-3"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black group-hover:text-signal-red transition-colors duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black group-hover:text-signal-red transition-colors duration-300 md:w-[28px] md:h-[28px] shrink-0">
                     {social.icon}
                   </svg>
                   <div className="flex flex-col items-start">
-                    <div className="flex items-center gap-1 font-tech text-sm font-bold text-black group-hover:text-signal-red transition-colors duration-300">
+                    <div className="flex items-center gap-1 font-tech text-[11px] md:text-sm font-bold text-black group-hover:text-signal-red transition-colors duration-300">
                       {social.name} <span className="text-signal-red">↗</span>
                     </div>
-                    <div className="font-mono text-[9px] text-muted tracking-widest text-left leading-tight mt-0.5 uppercase">
-                      {social.sub1}<br />{social.sub2}
+                    <div className="font-mono text-[8px] md:text-[9px] text-muted tracking-widest text-left leading-tight mt-0.5 uppercase">
+                      {social.sub1} <span className="md:hidden">{social.sub2}</span>
+                      <br className="hidden md:block" />
+                      <span className="hidden md:block">{social.sub2}</span>
                     </div>
                   </div>
                 </a>
                 {idx !== socials.length - 1 && (
-                  <div className="hidden lg:block w-px h-8 bg-border" />
+                  <div className="hidden md:block w-px h-8 bg-border ml-6" />
                 )}
               </div>
             ))}
@@ -120,9 +117,6 @@ export default function Hero() {
             </a>
           </div>
         </div>
-
-
-
       </div>
     </section>
   );
