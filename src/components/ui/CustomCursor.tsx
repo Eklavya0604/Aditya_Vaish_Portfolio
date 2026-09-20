@@ -11,9 +11,9 @@ export default function CustomCursor() {
     const checkTouch = () => {
       setIsTouchDevice(
         "ontouchstart" in window ||
-          navigator.maxTouchPoints > 0 ||
-          // @ts-ignore
-          navigator.msMaxTouchPoints > 0
+        navigator.maxTouchPoints > 0 ||
+        // @ts-ignore
+        navigator.msMaxTouchPoints > 0
       );
     };
     checkTouch();
@@ -72,7 +72,7 @@ export default function CustomCursor() {
     };
 
     window.addEventListener("mousemove", moveDot);
-    
+
     // Add hover effect to all links and buttons
     const interactiveElements = document.querySelectorAll("a, button, input, select, textarea");
     interactiveElements.forEach((el) => {

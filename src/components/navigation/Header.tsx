@@ -55,9 +55,8 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
-          scrolled ? "bg-white/80 backdrop-blur-md border-b border-border" : "bg-transparent border-b border-transparent"
-        }`}
+        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${scrolled ? "bg-white/80 backdrop-blur-md border-b border-border" : "bg-transparent border-b border-transparent"
+          }`}
       >
         <div className="w-full px-4 md:px-8 lg:px-12 h-20 flex items-center justify-between">
           {/* Logo / Identity */}
@@ -76,9 +75,14 @@ export default function Header() {
                 href={link.href}
                 target={link.external ? "_blank" : undefined}
                 rel={link.external ? "noopener noreferrer" : undefined}
-                className="font-mono text-xs text-muted hover:text-signal-red transition-colors duration-300 relative group overflow-hidden"
+                className="font-mono text-xs text-muted hover:text-signal-red transition-colors duration-300 relative group overflow-hidden flex items-start gap-1 py-0.5"
               >
-                {link.label}
+                <span>{link.label}</span>
+                {link.external && (
+                  <svg className="w-3 h-3 text-signal-red transform translate-y-[1px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                )}
                 <span className="absolute bottom-0 left-0 w-full h-[1px] bg-signal-red transform -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-300 ease-out" />
               </Link>
             ))}
@@ -96,27 +100,24 @@ export default function Header() {
             aria-label="Toggle Menu"
           >
             <span
-              className={`w-6 h-px bg-black transition-transform duration-300 ${
-                menuOpen ? "rotate-45 translate-y-[7px] bg-signal-red" : "group-hover:bg-signal-red"
-              }`}
+              className={`w-6 h-px bg-black transition-transform duration-300 ${menuOpen ? "rotate-45 translate-y-[7px] bg-signal-red" : "group-hover:bg-signal-red"
+                }`}
             />
             <span
-              className={`w-6 h-px bg-black transition-opacity duration-300 ${
-                menuOpen ? "opacity-0" : "group-hover:bg-signal-red"
-              }`}
+              className={`w-6 h-px bg-black transition-opacity duration-300 ${menuOpen ? "opacity-0" : "group-hover:bg-signal-red"
+                }`}
             />
             <span
-              className={`w-6 h-px bg-black transition-transform duration-300 ${
-                menuOpen ? "-rotate-45 -translate-y-[7px] bg-signal-red" : "group-hover:bg-signal-red"
-              }`}
+              className={`w-6 h-px bg-black transition-transform duration-300 ${menuOpen ? "-rotate-45 -translate-y-[7px] bg-signal-red" : "group-hover:bg-signal-red"
+                }`}
             />
           </button>
         </div>
       </header>
 
       {/* Mobile Menu Takeover */}
-      <div className="mobile-menu fixed inset-0 z-40 bg-black flex-col items-center justify-center hidden">
-        <nav className="flex flex-col items-center gap-8 w-full px-6">
+      <div className="mobile-menu fixed inset-0 z-40 bg-black flex-col justify-center items-start hidden pl-8 pr-8 md:pl-16">
+        <nav className="flex flex-col items-start gap-8 w-full max-w-sm">
           {navLinks.map((link) => (
             <Link
               key={link.label}
@@ -124,12 +125,17 @@ export default function Header() {
               onClick={() => setMenuOpen(false)}
               target={link.external ? "_blank" : undefined}
               rel={link.external ? "noopener noreferrer" : undefined}
-              className="mobile-link font-dot text-2xl tracking-widest text-white hover:text-signal-red transition-colors duration-300 w-full text-center border-b border-border pb-4"
+              className="mobile-link font-dot text-2xl tracking-widest text-white hover:text-signal-red transition-colors duration-300 w-full text-left border-b border-border pb-4 relative flex items-center justify-start gap-3"
             >
               {link.label}
+              {link.external && (
+                <svg className="w-5 h-5 text-signal-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 17L17 7M17 7H7M17 7V17" />
+                </svg>
+              )}
             </Link>
           ))}
-          <div className="mobile-link font-dot text-xs text-secondary mt-12 flex items-center gap-2">
+          <div className="mobile-link font-dot text-xs text-secondary mt-12 flex items-center justify-start gap-2">
             <span className="inline-block w-2 h-2 bg-signal-red rounded-full animate-pulse" />
             SYS.STATUS // ONLINE
           </div>
