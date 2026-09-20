@@ -241,7 +241,7 @@ function IdeasToProductFlow() {
     <div ref={containerRef} className="relative pt-3 pb-1">
       <p className="text-black/70 text-base md:text-lg leading-relaxed">
         <span className="inline-block whitespace-nowrap font-medium text-black">
-          I convert{" "}
+          I convert{"  "}
           <span
             ref={srcWordRef}
             onClick={playAnimation}
