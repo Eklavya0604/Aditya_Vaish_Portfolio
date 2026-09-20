@@ -1,26 +1,96 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'NType82';
+  src: url('/fonts/NType82-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DotMatrix';
+  src: url('/fonts/DOTMATRX.TTF') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DotMatrix';
+  src: url('/fonts/DotMatrix_TR.TTF') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Core Color System */
+  --color-black: #000000;
+  --color-soft-black: #0E0E0E;
+  --color-dark-grey: #171717;
+  --color-border: #222222;
+  --color-muted: #5A5A5A;
+  --color-secondary: #8C8C8C;
+  --color-soft-white: #EDEDED;
+  --color-white: #FFFFFF;
+  --color-signal-red: #D71921;
+
+  --background: var(--color-white);
+  --foreground: var(--color-black);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-black: var(--color-black);
+  --color-soft-black: var(--color-soft-black);
+  --color-dark-grey: var(--color-dark-grey);
+  --color-border: var(--color-border);
+  --color-muted: var(--color-muted);
+  --color-secondary: var(--color-secondary);
+  --color-soft-white: var(--color-soft-white);
+  --color-white: var(--color-white);
+  --color-signal-red: var(--color-signal-red);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-ntype82: 'NType82', monospace;
+  --font-dotmatrix: 'DotMatrix', monospace;
+  
+  --font-sans: var(--font-space-grotesk), sans-serif;
+  --font-mono: var(--font-space-mono), monospace;
+  --font-tech: var(--font-ntype82);
+  --font-dot: var(--font-dotmatrix);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  /* Disable default rounded corners anywhere globally */
+  --radius: 0px; 
 }
+
+/* Base resets for the design system */
+* {
+  border-color: var(--color-border);
+  border-radius: 0 !important;
+}
+
+/* Custom selection */
+::selection {
+  background: var(--color-signal-red);
+  color: var(--color-white);
+}
+
+/* Minimal Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-black);
+  border-left: 1px solid var(--color-border);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-muted);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-signal-red);
+}
+
