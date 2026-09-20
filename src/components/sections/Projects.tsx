@@ -9,21 +9,25 @@ gsap.registerPlugin(ScrollTrigger);
 const projects = [
   {
     id: "01",
-    title: "Aura System",
-    type: "FRONTEND_ARCH",
-    description: "A modular, headless e-commerce interface built for extreme performance. Exposed routing and state machines.",
+    title: "SpringSentinel",
+    type: "MICROSERVICE",
+    description: "High-performance Spring Boot microservice with Redis-based atomic guardrails. Features rate limiting, JWT, and real-time virality scoring.",
+    link: "https://github.com/Eklavya0604/SpringSentinel",
   },
   {
     id: "02",
-    title: "Terminal.io",
-    type: "WEB_APP",
-    description: "Browser-based command line interface for cloud infrastructure management. Features real-time socket connections.",
+    title: "Business Connect Pro",
+    type: "FULL_STACK",
+    description: "Local service marketplace platform. Features end-to-end service tracking, review modules, and WhatsApp API automation.",
+    link: "https://github.com/Eklavya0604/business-connect-pro",
   },
   {
     id: "03",
-    title: "Core Data",
-    type: "DASHBOARD",
-    description: "Financial analytics dashboard with high-density data tables and WebGL data visualization pipelines.",
+    title: "SpamShield",
+    type: "MACHINE_LEARNING",
+    description: "Email spam classification system using NLP. Achieved ~95% accuracy using TF-IDF, Naive Bayes, and Logistic Regression.",
+    link: "https://github.com/Eklavya0604/SpamShield",
+    paperLink: "https://www.inderscienceonline.com/doi/abs/10.1504/IJCE.2026.155529",
   },
 ];
 
@@ -53,13 +57,13 @@ export default function Projects() {
   }, []);
 
   return (
-    <section 
-      id="projects" 
+    <section
+      id="projects"
       ref={sectionRef}
       className="w-full bg-white text-black py-24 md:py-40 px-4 md:px-8 lg:px-12"
     >
       <div className="max-w-[1440px] mx-auto w-full">
-        
+
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div>
@@ -71,7 +75,7 @@ export default function Projects() {
               WORK // RECENT_BUILD
             </div>
           </div>
-          
+
           <div className="font-dot text-xs text-black/50">
             INDEX [03]
           </div>
@@ -80,8 +84,8 @@ export default function Projects() {
         {/* Project Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {projects.map((project) => (
-            <div 
-              key={project.id} 
+            <div
+              key={project.id}
               className="project-card group border border-black/20 p-6 md:p-8 flex flex-col justify-between min-h-[320px] hover:border-signal-red transition-colors duration-500 relative overflow-hidden"
             >
               {/* Top Meta */}
@@ -100,12 +104,29 @@ export default function Projects() {
                 </p>
               </div>
 
-              {/* Action Button */}
-              <div className="mt-auto">
-                <button className="flex items-center gap-2 font-tech text-xs tracking-widest uppercase text-black/60 group-hover:text-signal-red transition-colors duration-300">
+              {/* Action Buttons */}
+              <div className="mt-auto flex flex-wrap items-center justify-between gap-y-4">
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 font-tech text-xs tracking-widest uppercase text-black/60 group-hover:text-signal-red transition-colors duration-300"
+                >
                   <span className="w-6 h-[1px] bg-black/60 group-hover:bg-signal-red group-hover:w-12 transition-all duration-500" />
                   View Node
-                </button>
+                </a>
+
+                {/* @ts-ignore */}
+                {project.paperLink && (
+                  <a
+                    href={project.paperLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center font-mono text-[9px] tracking-widest uppercase text-signal-red border border-signal-red/30 hover:bg-signal-red hover:text-white px-2 py-1 transition-all duration-300"
+                  >
+                    Published
+                  </a>
+                )}
               </div>
             </div>
           ))}
