@@ -73,7 +73,8 @@ export default function HangingLamp({
         wrapper.style.left = `${anchorBox.left + anchorBox.width / 2 - xOffset - containerBox.left}px`;
         // A period sits near the baseline (around 80% down the bounding box), not the vertical center
         wrapper.style.top = `${anchorBox.top + anchorBox.height * 0.80 - containerBox.top}px`;
-        wrapper.style.setProperty("--lamp-scale", String((fontSizePx / 100) * scale));
+        const mobileModifier = window.innerWidth < 768 ? 0.8 : 1;
+        wrapper.style.setProperty("--lamp-scale", String((fontSizePx / 100) * scale * mobileModifier));
     }, [anchorRef, containerRef, scale]);
 
     useLayoutEffect(() => {
@@ -106,8 +107,7 @@ export default function HangingLamp({
         if (!lamp || !wrapper) return;
 
         let rotation = 0;
-        let startAngle = 0;
-        let time = 0;
+        let velocity = 0;
         const gravity = 1;
         const length = 250;
         let swingTimer: ReturnType<typeof setTimeout> | null = null;
@@ -118,24 +118,33 @@ export default function HangingLamp({
         };
 
         const lampSwing = () => {
-            time += 1;
-            if (Math.abs(startAngle) > 0.5) {
-                setRotation(Math.cos(Math.sqrt(gravity / length) * time) * startAngle);
-                startAngle *= 0.996;
-                swingTimer = setTimeout(lampSwing, 1000 / 60);
-            } else {
+            const accel = -(gravity / length) * rotation;
+            velocity += accel;
+            velocity *= 0.99; // Damping/friction
+
+            const newRotation = rotation + velocity;
+            setRotation(newRotation);
+
+            if (Math.abs(velocity) < 0.05 && Math.abs(newRotation) < 0.5) {
                 setRotation(0);
+                velocity = 0;
+                swingTimer = null;
+            } else {
+                swingTimer = setTimeout(lampSwing, 1000 / 60);
             }
         };
 
         const startLampSwing = () => {
-            time = 0;
-            lampSwing();
+            if (!swingTimer) {
+                lampSwing();
+            }
         };
 
         const stopLampSwing = () => {
             if (swingTimer) clearTimeout(swingTimer);
+            swingTimer = null;
             setRotation(rotation);
+            velocity = 0;
         };
 
         let drag: { startDegree: number; startRotation: number } | null = null;
@@ -148,11 +157,30 @@ export default function HangingLamp({
         };
 
         const onPointerDown = (e: PointerEvent) => {
+            // Disable drag setup entirely on touch devices so users can scroll over the lamp normally
+            if (e.pointerType === "touch" || window.innerWidth < 768) {
+                return;
+            }
+
             stopLampSwing();
             drag = { startDegree: degreeAt(e.clientX, e.clientY), startRotation: rotation };
             lamp.classList.add("dragging");
             document.body.classList.add("lamp-dragging");
             (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
+        };
+        
+        const onClick = (e: MouseEvent) => {
+            // Only use click-to-swing on mobile/touch (desktop uses drag)
+            // @ts-ignore pointerType exists on MouseEvent in modern browsers
+            if (e.pointerType === "mouse" && window.innerWidth >= 768) return;
+            
+            if (Math.abs(rotation) < 2) {
+                velocity += 3;
+            } else {
+                velocity += velocity > 0 ? 2 : -2;
+            }
+            velocity = Math.min(Math.max(velocity, -10), 10);
+            startLampSwing();
         };
 
         const onPointerMove = (e: PointerEvent) => {
@@ -163,7 +191,6 @@ export default function HangingLamp({
                 75
             );
             setRotation(clamped);
-            startAngle = clamped;
         };
 
         const onPointerUp = () => {
@@ -179,10 +206,30 @@ export default function HangingLamp({
             : [];
 
         if (draggable) {
-            dragables.forEach((el) => el.addEventListener("pointerdown", onPointerDown));
+            dragables.forEach((el) => {
+                el.addEventListener("pointerdown", onPointerDown);
+                el.addEventListener("click", onClick);
+            });
             window.addEventListener("pointermove", onPointerMove);
             window.addEventListener("pointerup", onPointerUp);
         }
+
+        // Gentle swing when scrolled into view
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        // Nudge the lamp if it's currently still and not being dragged
+                        if (Math.abs(rotation) < 1 && drag === null) {
+                            velocity += 1.5;
+                            startLampSwing();
+                        }
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+        observer.observe(wrapper);
 
         let flickerTimer: ReturnType<typeof setTimeout> | undefined;
         if (flicker) {
@@ -196,7 +243,11 @@ export default function HangingLamp({
         }
 
         return () => {
-            dragables.forEach((el) => el.removeEventListener("pointerdown", onPointerDown));
+            observer.disconnect();
+            dragables.forEach((el) => {
+                el.removeEventListener("pointerdown", onPointerDown);
+                el.removeEventListener("click", onClick);
+            });
             window.removeEventListener("pointermove", onPointerMove);
             window.removeEventListener("pointerup", onPointerUp);
             if (swingTimer) clearTimeout(swingTimer);
@@ -316,6 +367,19 @@ export default function HangingLamp({
         }
         :global(body.lamp-dragging) {
           cursor: grabbing !important;
+        }
+
+        /* Mobile specific adjustments for better scaling */
+        @media (max-width: 768px) {
+          .lamp-cable {
+            height: calc(90px * var(--lamp-scale));
+          }
+          .lamp-cone {
+            width: calc(360px * var(--lamp-scale));
+            height: calc(200px * var(--lamp-scale));
+            /* Adjust top inset to keep the beam originating accurately from the bulb */
+            clip-path: polygon(41% 0%, 59% 0%, 100% 100%, 0% 100%);
+          }
         }
       `}</style>
         </div>
