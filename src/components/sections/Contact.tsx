@@ -1,17 +1,46 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useActionState, useEffect, useRef } from "react";
+import { useFormStatus } from "react-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HangingLamp from "../ui/Hanginglamp";
+import { Turnstile } from "@marsidev/react-turnstile";
+import { sendEmailAction, ActionState } from "@/app/actions/sendEmail";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const initialState: ActionState = {
+  success: false,
+};
+
+function SubmitButton({ isSuccess }: { isSuccess: boolean }) {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      type="submit"
+      disabled={pending || isSuccess}
+      className="font-mono text-xs tracking-widest uppercase text-signal-red border border-signal-red px-6 py-2 hover:bg-signal-red hover:text-white transition-all duration-300 disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-signal-red group flex items-center gap-2"
+    >
+      {!pending && !isSuccess && "SUBMIT"}
+      {pending && "TRANSMITTING..."}
+      {isSuccess && "RECEIVED"}
+
+      {!pending && !isSuccess && (
+        <span className="w-4 h-[1px] bg-signal-red group-hover:bg-white transition-colors duration-300 inline-block ml-2" />
+      )}
+    </button>
+  );
+}
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const periodRef = useRef<HTMLSpanElement>(null);
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const [state, formAction] = useActionState(sendEmailAction, initialState);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -35,15 +64,12 @@ export default function Contact() {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("sending");
-    // Simulate sending email
-    setTimeout(() => {
-      setStatus("sent");
-      setTimeout(() => setStatus("idle"), 3000);
-    }, 1000);
-  };
+  // Reset form on success
+  useEffect(() => {
+    if (state.success) {
+      formRef.current?.reset();
+    }
+  }, [state.timestamp, state.success]);
 
   return (
     <section
@@ -82,13 +108,15 @@ export default function Contact() {
               Looking for a technical partner or just want to discuss an idea? Send a transmission below.
             </p>
 
-            <form onSubmit={handleSubmit} className="contact-fade flex flex-col gap-6 w-full max-w-xl">
+            <form ref={formRef} action={formAction} className="contact-fade flex flex-col gap-6 w-full max-w-xl">
               <div className="flex flex-col gap-2">
                 <label htmlFor="name" className="font-mono text-[10px] text-black/60 tracking-widest uppercase">Name // IDENT</label>
                 <input
                   type="text"
                   id="name"
+                  name="name"
                   required
+                  maxLength={100}
                   className="w-full bg-transparent border-b border-black/20 pb-2 font-sans text-base text-black focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-black/30"
                   placeholder="Aditya"
                 />
@@ -98,36 +126,49 @@ export default function Contact() {
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   required
+                  maxLength={100}
                   className="w-full bg-transparent border-b border-black/20 pb-2 font-sans text-base text-black focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-black/30"
                   placeholder="aditya@example.com"
                 />
               </div>
+
+              {/* Honeypot field (hidden from visual users but bots might fill it) */}
+              <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+
               <div className="flex flex-col gap-2">
                 <label htmlFor="message" className="font-mono text-[10px] text-black/60 tracking-widest uppercase">Message // DATA</label>
                 <textarea
                   id="message"
+                  name="message"
                   required
+                  minLength={10}
+                  maxLength={5000}
                   rows={4}
                   className="w-full bg-transparent border-b border-black/20 pb-2 font-sans text-base text-black focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-black/30 resize-none"
                   placeholder="Transmission contents..."
                 />
               </div>
 
-              <div className="mt-4">
-                <button
-                  type="submit"
-                  disabled={status !== "idle"}
-                  className="font-mono text-xs tracking-widest uppercase text-signal-red border border-signal-red px-6 py-2 hover:bg-signal-red hover:text-white transition-all duration-300 disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-signal-red group flex items-center gap-2"
-                >
-                  {status === "idle" && "SUBMIT"}
-                  {status === "sending" && "TRANSMITTING..."}
-                  {status === "sent" && "RECEIVED"}
+              {process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && (
+                <div className="mt-2">
+                  <Turnstile
+                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                    options={{ theme: 'light' }}
+                  />
+                </div>
+              )}
 
-                  {status === "idle" && (
-                    <span className="w-4 h-[1px] bg-signal-red group-hover:bg-white transition-colors duration-300 inline-block ml-2" />
-                  )}
-                </button>
+              {state.error && (
+                <p className="text-signal-red text-sm font-sans">{state.error}</p>
+              )}
+              {state.success && (
+                <p className="text-signal-red text-sm font-dot uppercase tracking-wider">{state.message}</p>
+              )}
+
+              <div className="mt-4">
+                <SubmitButton isSuccess={state.success} />
               </div>
             </form>
           </div>
