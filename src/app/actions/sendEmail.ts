@@ -121,7 +121,7 @@ export async function sendEmailAction(
         const { error } = await resend.emails.send({
             from: `Portfolio Contact <${fromEmail}>`,
             to: process.env.CONTACT_EMAIL,
-            replyTo: email,
+            reply_to: email,
             subject: `New Contact Request from ${name}`,
             text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
         });
