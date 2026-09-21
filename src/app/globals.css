@@ -52,7 +52,7 @@
 
   --font-ntype82: 'NType82', monospace;
   --font-dotmatrix: 'DotMatrix', monospace;
-  
+
   --font-sans: var(--font-space-grotesk), sans-serif;
   --font-mono: var(--font-space-mono), monospace;
   --font-tech: var(--font-ntype82);
@@ -64,11 +64,12 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   /* Disable default rounded corners anywhere globally */
-  --radius: 0px; 
+  --radius: 0px;
 }
 
 /* Base resets for the design system */
-* {
+/* Excludes the hanging-lamp parts so its dome/bulb can stay rounded */
+*:not(.lamp-shade):not(.lamp-bulb):not(.lamp-block):not(.lamp-cable) {
   border-color: var(--color-border);
   border-radius: 0 !important;
 }
@@ -83,14 +84,16 @@ body {
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--color-black);
   border-left: 1px solid var(--color-border);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--color-muted);
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-signal-red);
 }
-

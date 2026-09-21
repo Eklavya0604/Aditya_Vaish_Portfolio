@@ -3,11 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import HangingLamp from "../ui/Hanginglamp";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const periodRef = useRef<HTMLSpanElement>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
 
   useEffect(() => {
@@ -64,66 +67,69 @@ export default function Contact() {
         <div className="grid grid-cols-4 md:grid-cols-12 gap-8 md:gap-16">
           <div className="col-span-4 md:col-span-3">
             <h3
-              className="contact-fade text-4xl md:text-5xl lg:text-6xl leading-[1] tracking-tight text-black"
+              ref={headingRef}
+              className="contact-fade text-4xl md:text-5xl lg:text-6xl leading-[1] tracking-tight text-black relative z-10"
               style={{ fontFamily: "var(--font-ntype82)" }}
             >
-              Let&apos;s Build<br />Together<span className="text-signal-red">.</span>
+              Let&apos;s Build<br />Together
+              <span ref={periodRef} className="text-signal-red relative z-30">.</span>
+              <HangingLamp anchorRef={periodRef} containerRef={headingRef} />
             </h3>
           </div>
 
           <div className="col-span-4 md:col-span-6 md:col-start-5 flex flex-col gap-12">
-          <p className="contact-fade font-sans text-xl md:text-2xl font-medium leading-tight text-black">
-            Looking for a technical partner or just want to discuss an idea? Send a transmission below.
-          </p>
+            <p className="contact-fade font-sans text-xl md:text-2xl font-medium leading-tight text-black">
+              Looking for a technical partner or just want to discuss an idea? Send a transmission below.
+            </p>
 
-          <form onSubmit={handleSubmit} className="contact-fade flex flex-col gap-6 w-full max-w-xl">
-            <div className="flex flex-col gap-2">
-              <label htmlFor="name" className="font-mono text-[10px] text-black/60 tracking-widest uppercase">Name // IDENT</label>
-              <input
-                type="text"
-                id="name"
-                required
-                className="w-full bg-transparent border-b border-black/20 pb-2 font-sans text-base text-black focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-black/30"
-                placeholder="Aditya"
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="email" className="font-mono text-[10px] text-black/60 tracking-widest uppercase">Email // ROUTE</label>
-              <input
-                type="email"
-                id="email"
-                required
-                className="w-full bg-transparent border-b border-black/20 pb-2 font-sans text-base text-black focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-black/30"
-                placeholder="aditya@example.com"
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="message" className="font-mono text-[10px] text-black/60 tracking-widest uppercase">Message // DATA</label>
-              <textarea
-                id="message"
-                required
-                rows={4}
-                className="w-full bg-transparent border-b border-black/20 pb-2 font-sans text-base text-black focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-black/30 resize-none"
-                placeholder="Transmission contents..."
-              />
-            </div>
+            <form onSubmit={handleSubmit} className="contact-fade flex flex-col gap-6 w-full max-w-xl">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="name" className="font-mono text-[10px] text-black/60 tracking-widest uppercase">Name // IDENT</label>
+                <input
+                  type="text"
+                  id="name"
+                  required
+                  className="w-full bg-transparent border-b border-black/20 pb-2 font-sans text-base text-black focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-black/30"
+                  placeholder="Aditya"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="email" className="font-mono text-[10px] text-black/60 tracking-widest uppercase">Email // ROUTE</label>
+                <input
+                  type="email"
+                  id="email"
+                  required
+                  className="w-full bg-transparent border-b border-black/20 pb-2 font-sans text-base text-black focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-black/30"
+                  placeholder="aditya@example.com"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="message" className="font-mono text-[10px] text-black/60 tracking-widest uppercase">Message // DATA</label>
+                <textarea
+                  id="message"
+                  required
+                  rows={4}
+                  className="w-full bg-transparent border-b border-black/20 pb-2 font-sans text-base text-black focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-black/30 resize-none"
+                  placeholder="Transmission contents..."
+                />
+              </div>
 
-            <div className="mt-4">
-              <button
-                type="submit"
-                disabled={status !== "idle"}
-                className="font-mono text-xs tracking-widest uppercase text-signal-red border border-signal-red px-6 py-2 hover:bg-signal-red hover:text-white transition-all duration-300 disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-signal-red group flex items-center gap-2"
-              >
-                {status === "idle" && "SUBMIT"}
-                {status === "sending" && "TRANSMITTING..."}
-                {status === "sent" && "RECEIVED"}
+              <div className="mt-4">
+                <button
+                  type="submit"
+                  disabled={status !== "idle"}
+                  className="font-mono text-xs tracking-widest uppercase text-signal-red border border-signal-red px-6 py-2 hover:bg-signal-red hover:text-white transition-all duration-300 disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-signal-red group flex items-center gap-2"
+                >
+                  {status === "idle" && "SUBMIT"}
+                  {status === "sending" && "TRANSMITTING..."}
+                  {status === "sent" && "RECEIVED"}
 
-                {status === "idle" && (
-                  <span className="w-4 h-[1px] bg-signal-red group-hover:bg-white transition-colors duration-300 inline-block ml-2" />
-                )}
-              </button>
-            </div>
-          </form>
+                  {status === "idle" && (
+                    <span className="w-4 h-[1px] bg-signal-red group-hover:bg-white transition-colors duration-300 inline-block ml-2" />
+                  )}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
