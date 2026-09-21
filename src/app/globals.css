@@ -59,6 +59,10 @@
   --font-dot: var(--font-dotmatrix);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
