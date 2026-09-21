@@ -99,7 +99,7 @@ export default function Contact() {
             >
               Let&apos;s Build<br />Together
               <span ref={periodRef} className="text-signal-red relative z-30">.</span>
-              <HangingLamp anchorRef={periodRef} containerRef={headingRef} />
+              <HangingLamp anchorRef={periodRef as any} containerRef={headingRef as any} />
             </h3>
           </div>
 
