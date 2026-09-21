@@ -85,7 +85,7 @@ export default function Hero() {
                     {social.icon}
                   </svg>
                   <div className="flex flex-col items-start">
-                    <div className="flex items-center gap-1 font-tech text-[11px] md:text-sm font-bold text-black group-hover:text-signal-red transition-colors duration-300">
+                    <div className="flex items-center gap-1 font-tech tracking-wide text-[11px] md:text-sm font-bold text-black group-hover:text-signal-red transition-colors duration-300">
                       {social.name} <span className="text-signal-red">↗</span>
                     </div>
                     <div className="font-mono text-[8px] md:text-[9px] text-muted tracking-widest text-left leading-tight mt-0.5 uppercase">
