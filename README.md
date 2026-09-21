@@ -15,7 +15,7 @@
 <br />
 
 <div align="center">
-  <a href="adityavaish.dev">
+  <a href="https://www.adityavaish.dev/">
     <img src="https://img.shields.io/badge/View%20Live%20Site-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="View Live Site" />
   </a>
   &nbsp;
