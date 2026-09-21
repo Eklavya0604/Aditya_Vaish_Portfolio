@@ -331,7 +331,7 @@ export default function HangingLamp({
           background: var(--lamp-glow);
           border-bottom-left-radius: calc(22px * var(--lamp-scale));
           border-bottom-right-radius: calc(22px * var(--lamp-scale));
-          box-shadow: 0 0 calc(90px * var(--lamp-scale)) calc(14px * var(--lamp-scale))
+          box-shadow: 0 calc(10px * var(--lamp-scale)) calc(30px * var(--lamp-scale)) calc(2px * var(--lamp-scale))
             var(--lamp-glow);
           cursor: grab;
           transition: background 0.15s ease, box-shadow 0.15s ease;
