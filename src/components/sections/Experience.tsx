@@ -10,6 +10,7 @@ const experiences = [
   {
     id: "01",
     role: "Software Engineer Intern",
+    subRole: "Frontend & Backend Engineer",
     company: "Controlled",
     location: "Ghaziabad",
     period: "Jun 2026 - Present",
@@ -18,6 +19,7 @@ const experiences = [
   {
     id: "02",
     role: "Overall Coordinator",
+    subRole: "Events Organizer & Social Media Head",
     company: "GDG on Campus ABESEC",
     period: "Exora",
     skills: ["Next.js", "React", "GSAP", "Leadership"]
@@ -102,10 +104,17 @@ export default function Experience() {
                 </div>
 
                 {/* Role & Details */}
-                <div className="md:w-3/4 flex flex-col border-l-2 border-black/5 md:border-none pl-4 md:pl-0">
-                  <h4 className="font-sans text-lg md:text-xl text-black/80 mb-6">
-                    {exp.role}
-                  </h4>
+                <div className="md:w-3/4 flex flex-col border-l-2 border-black/5 md:border-none pl-4 md:pl-0 md:mt-[22px]">
+                  <div className="mb-6">
+                    <h4 className="font-sans text-lg md:text-xl text-black/80">
+                      {exp.role}
+                    </h4>
+                    {exp.subRole && (
+                      <div className="font-sans text-sm text-black/50 mt-1">
+                        {exp.subRole}
+                      </div>
+                    )}
+                  </div>
 
                   {/* Skills tags */}
                   <div className="flex flex-wrap gap-2 mt-auto">
