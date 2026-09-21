@@ -91,7 +91,7 @@ export default function Contact() {
 
         {/* Content grid */}
         <div className="grid grid-cols-4 md:grid-cols-12 gap-8 md:gap-16">
-          <div className="col-span-4 md:col-span-3 mb-22 md:mb-0">
+          <div className="col-span-4 md:col-span-3 mb-8 md:mb-0">
             <h3
               ref={headingRef}
               className="contact-fade text-4xl md:text-5xl lg:text-6xl leading-[1] tracking-tight text-black relative z-10"
@@ -99,7 +99,9 @@ export default function Contact() {
             >
               Let&apos;s Build<br />Together
               <span ref={periodRef} className="text-signal-red relative z-30">.</span>
-              <HangingLamp anchorRef={periodRef as any} containerRef={headingRef as any} />
+              <div className="hidden md:block">
+                <HangingLamp anchorRef={periodRef as any} containerRef={headingRef as any} />
+              </div>
             </h3>
           </div>
 
