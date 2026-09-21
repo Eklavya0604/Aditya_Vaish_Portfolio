@@ -26,9 +26,9 @@ type LampCSSVars = React.CSSProperties & {
 
 interface HangingLampProps {
     /** Ref to the element the cable should drop from (e.g. the "." span). */
-    anchorRef: React.RefObject<HTMLElement>;
+    anchorRef: React.RefObject<any>;
     /** Ref to the nearest ancestor with `position: relative`. */
-    containerRef: React.RefObject<HTMLElement>;
+    containerRef: React.RefObject<any>;
     /**
      * Multiplier on top of the automatic, font-size-based sizing (the lamp
      * scales itself to the anchor's current font-size so it stays in
