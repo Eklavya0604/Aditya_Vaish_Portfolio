@@ -81,14 +81,19 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${scrolled ? "bg-white/80 backdrop-blur-md border-b border-border" : "bg-transparent border-b border-transparent"
-          }`}
+        className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
+          menuOpen 
+            ? "bg-black border-b border-transparent" 
+            : scrolled 
+              ? "bg-white/80 backdrop-blur-md border-b border-border" 
+              : "bg-transparent border-b border-transparent"
+        }`}
       >
         <div className="w-full px-4 md:px-8 lg:px-12 h-20 flex items-center justify-between">
           {/* Logo / Identity */}
-          <Link href="/" className="group flex items-center gap-4">
-            <div className="w-3 h-3 bg-black group-hover:bg-signal-red transition-colors duration-300" />
-            <span className="text-sm uppercase tracking-widest text-black group-hover:text-signal-red transition-colors duration-300" style={{ fontFamily: "'DotMatrix', monospace" }}>
+          <Link href="/" className="group flex items-center gap-4" onClick={() => setMenuOpen(false)}>
+            <div className={`w-3 h-3 group-hover:bg-signal-red transition-colors duration-300 ${menuOpen ? "bg-white" : "bg-black"}`} />
+            <span className={`text-sm uppercase tracking-widest group-hover:text-signal-red transition-colors duration-300 ${menuOpen ? "text-white" : "text-black"}`} style={{ fontFamily: "'DotMatrix', monospace" }}>
               Aditya Kumar Vaish
             </span>
           </Link>
