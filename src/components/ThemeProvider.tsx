@@ -63,10 +63,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       y = rect.top + rect.height / 2;
     }
 
+    // Multiply by 1.5 to guarantee coverage on mobile dynamic viewports (dvh)
     const endRadius = Math.hypot(
       Math.max(x, innerWidth - x),
       Math.max(y, innerHeight - y)
-    );
+    ) * 1.5;
 
     if (transitionRef.current) {
       transitionRef.current.skipTransition();
