@@ -95,7 +95,7 @@ export default function HeroV2() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[100svh] w-full flex flex-col justify-center px-4 md:px-8 lg:px-12 pt-28 pb-8 md:pt-32 md:pb-0"
+      className="relative min-h-[75svh] md:min-h-[100svh] w-full flex flex-col justify-center px-4 md:px-8 lg:px-12 pt-28 pb-4 md:pt-32 md:pb-0"
     >
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
@@ -112,7 +112,7 @@ export default function HeroV2() {
             <SpectaclesIcon className="w-full h-auto text-signal-red drop-shadow-sm opacity-90 mx-auto" />
           </div>
 
-          <h1 className="hero-stagger font-tech text-[clamp(2.5rem,8vw,8rem)] leading-[0.95] font-bold tracking-[0.02em] uppercase mb-4 md:mb-6 text-black text-center whitespace-nowrap">
+          <h1 className="hero-stagger font-tech text-[clamp(3.2rem,11vw,9rem)] leading-[0.95] font-bold tracking-[0.02em] uppercase mb-4 md:mb-6 text-black text-center whitespace-nowrap">
             Aditya Vaish
           </h1>
 
