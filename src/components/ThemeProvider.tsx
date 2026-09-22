@@ -32,7 +32,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const toggleTheme = (e?: React.MouseEvent) => {
     const next = theme === "light" ? "dark" : "light";
-    
+
     const applyTheme = (t: Theme) => {
       setTheme(t);
       localStorage.setItem("theme", t);
@@ -52,8 +52,16 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    const x = e.clientX;
-    const y = e.clientY;
+    let x = e.clientX;
+    let y = e.clientY;
+
+    // Use the button's actual center for a perfect epicenter, especially on mobile touch
+    if (e.currentTarget) {
+      const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+      x = rect.left + rect.width / 2;
+      y = rect.top + rect.height / 2;
+    }
+
     const endRadius = Math.hypot(
       Math.max(x, innerWidth - x),
       Math.max(y, innerHeight - y)
