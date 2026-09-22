@@ -1,3 +1,4 @@
+import Script from "next/script";
 import Header from "@/components/navigation/Header";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
@@ -10,6 +11,25 @@ import Contact from "@/components/sections/Contact";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between w-full overflow-clip">
+      <Script id="json-ld-schema" type="application/ld+json" strategy="ready">{`
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "Aditya Kumar Vaish",
+          "url": "https://adityavaish.dev",
+          "jobTitle": "Backend Engineer",
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "ABES Engineering College"
+          },
+          "sameAs": [
+            "https://github.com/Eklavya0604",
+            "https://www.linkedin.com/in/aditya-vaish-482a11281/",
+            "https://www.instagram.com/aditya_k.__/?__pwa=1"
+          ],
+          "knowsAbout": ["Java", "Spring Boot", "React", "Distributed Systems", "SQL"]
+        }
+      `}</Script>
       <Header />
       <Hero />
       <About />
