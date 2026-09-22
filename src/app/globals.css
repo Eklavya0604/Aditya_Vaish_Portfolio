@@ -124,7 +124,7 @@ body {
 
 .theme-transitioning,
 .theme-transitioning * {
-  transition: background-color 1.5s ease 0.05s, color 1.5s ease 0.05s, border-color 1.5s ease 0.05s, fill 1.5s ease 0.05s, stroke 1.5s ease 0.05s !important;
+  transition: background-color 2.0s ease 0.05s, color 2.0s ease 0.05s, border-color 2.0s ease 0.05s, fill 2.0s ease 0.05s, stroke 2.0s ease 0.05s !important;
 }
 
 .disable-transitions,
