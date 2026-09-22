@@ -1,10 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import ScrollReveal from "../ui/ScrollReveal";
 
 const projects = [
   {
@@ -32,40 +28,15 @@ const projects = [
 ];
 
 export default function Projects() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".project-card",
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 70%",
-          },
-        }
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section
       id="projects"
-      ref={sectionRef}
-      className="w-full bg-white text-black pt-12 md:pt-16 pb-24 md:pb-40 px-4 md:px-8 lg:px-12"
+      className="w-full bg-white text-black pt-12 md:pt-16 pb-24 md:pb-40 px-4 md:px-8 lg:px-12 scroll-mt-20"
     >
-      <div className="max-w-[1440px] mx-auto w-full">
+      <ScrollReveal staggerChildren staggerClass="project-card" className="max-w-[1440px] mx-auto w-full">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+        <div className="project-card flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div>
             <h2 className="font-dot text-3xl md:text-5xl uppercase tracking-tight mb-2 text-black">
               02<br />
@@ -132,7 +103,7 @@ export default function Projects() {
           ))}
         </div>
 
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

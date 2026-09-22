@@ -72,7 +72,7 @@ export default function HangingLamp({
         const xOffset = -1;
         wrapper.style.left = `${anchorBox.left + anchorBox.width / 2 - xOffset - containerBox.left}px`;
         // A period sits near the baseline (around 80% down the bounding box), not the vertical center
-        wrapper.style.top = `${anchorBox.top + anchorBox.height * 0.80 - containerBox.top}px`;
+        wrapper.style.top = `${anchorBox.top + anchorBox.height * 0.78 - containerBox.top}px`;
         const mobileModifier = window.innerWidth < 768 ? 0.8 : 1;
         wrapper.style.setProperty("--lamp-scale", String((fontSizePx / 100) * scale * mobileModifier));
     }, [anchorRef, containerRef, scale]);
@@ -168,12 +168,12 @@ export default function HangingLamp({
             document.body.classList.add("lamp-dragging");
             (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
         };
-        
+
         const onClick = (e: MouseEvent) => {
             // Only use click-to-swing on mobile/touch (desktop uses drag)
             // @ts-ignore pointerType exists on MouseEvent in modern browsers
             if (e.pointerType === "mouse" && window.innerWidth >= 768) return;
-            
+
             if (Math.abs(rotation) < 2) {
                 velocity += 3;
             } else {

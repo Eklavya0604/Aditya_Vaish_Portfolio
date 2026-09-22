@@ -317,38 +317,15 @@ function IdeasToProductFlow() {
   );
 }
 
+import ScrollReveal from "../ui/ScrollReveal";
+
 export default function About() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".about-fade",
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 75%",
-          },
-        }
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section
       id="about"
-      ref={sectionRef}
-      className="w-full bg-white text-black py-24 md:py-40 px-4 md:px-8 lg:px-12 relative"
+      className="w-full bg-white text-black pt-12 md:pt-16 pb-24 md:pb-40 px-4 md:px-8 lg:px-12 relative scroll-mt-20"
     >
-      <div className="max-w-[1440px] mx-auto w-full grid grid-cols-4 md:grid-cols-12 gap-8 md:gap-16">
+      <ScrollReveal staggerChildren staggerClass="about-fade" className="max-w-[1440px] mx-auto w-full grid grid-cols-4 md:grid-cols-12 gap-8 md:gap-16">
         {/* Header / Meta */}
         <div className="col-span-4 md:col-span-3 flex flex-col gap-6">
           <h2 className="about-fade font-dot text-3xl md:text-5xl uppercase tracking-tight text-black">
@@ -399,7 +376,7 @@ export default function About() {
             </div>
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import ScrollReveal from "../ui/ScrollReveal";
 
 const techLogos = [
   "/SVG_Tech/java-logo-svgrepo-com.svg",
@@ -88,14 +89,15 @@ export default function TechStack() {
         }
       `}</style>
 
-      <header className="flex items-center w-full px-5 md:px-20 pb-8 md:pb-12">
-        <h2 className="font-dot text-3xl md:text-5xl uppercase tracking-tight m-0 text-signal-red">
-          Skills
-        </h2>
-      </header>
+      <ScrollReveal staggerChildren staggerClass="tech-fade" className="w-full">
+        <header className="tech-fade flex items-center w-full px-5 md:px-20 pb-8 md:pb-12">
+          <h2 className="font-dot text-3xl md:text-5xl uppercase tracking-tight m-0 text-signal-red">
+            Skills
+          </h2>
+        </header>
 
-      <div className="w-full relative flex overflow-hidden py-10">
-        <div className="flex animate-scroll items-center">
+        <div className="tech-fade w-full relative flex overflow-hidden py-10">
+          <div className="flex animate-scroll items-center">
           {[...techLogos, ...techLogos, ...techLogos, ...techLogos].map((src, idx) => {
             const isActive = activeIndex === idx;
 
@@ -119,7 +121,8 @@ export default function TechStack() {
             );
           })}
         </div>
-      </div>
+        </div>
+      </ScrollReveal>
     </section>
   );
 }

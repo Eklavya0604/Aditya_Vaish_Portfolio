@@ -7,6 +7,7 @@ import gsap from "gsap";
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +19,27 @@ export default function Header() {
     
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Track active section via IntersectionObserver
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-50% 0px -50% 0px" }
+    );
+
+    const sections = document.querySelectorAll("section[id]");
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
   }, []);
 
   // Animation for mobile menu
@@ -73,23 +95,26 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                target={link.external ? "_blank" : undefined}
-                rel={link.external ? "noopener noreferrer" : undefined}
-                className="font-dot text-sm text-muted hover:text-signal-red transition-colors duration-300 relative group overflow-hidden flex items-start gap-1 py-0.5"
-              >
-                <span>{link.label}</span>
-                {link.external && (
-                  <svg className="w-3 h-3 text-signal-red transform translate-y-[1px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7V17" />
-                  </svg>
-                )}
-                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-signal-red transform -translate-x-[101%] group-hover:translate-x-0 transition-transform duration-300 ease-out" />
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.replace("#", "");
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
+                  className={`font-dot text-sm transition-colors duration-300 relative group overflow-hidden flex items-start gap-1 py-0.5 ${isActive ? "text-signal-red" : "text-muted hover:text-signal-red"}`}
+                >
+                  <span>{link.label}</span>
+                  {link.external && (
+                    <svg className="w-3 h-3 text-signal-red transform translate-y-[1px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7V17" />
+                    </svg>
+                  )}
+                  <span className={`absolute bottom-0 left-0 w-full h-[1px] bg-signal-red transform transition-transform duration-300 ease-out ${isActive ? "translate-x-0" : "-translate-x-[101%] group-hover:translate-x-0"}`} />
+                </Link>
+              );
+            })}
             <div className="w-px h-4 bg-border mx-2" />
             <div className="font-dot text-[10px] text-secondary flex items-center gap-2">
               <span className="inline-block w-1.5 h-1.5 bg-signal-red rounded-full animate-pulse" />
@@ -122,23 +147,26 @@ export default function Header() {
       {/* Mobile Menu Takeover */}
       <div className="mobile-menu fixed inset-0 z-40 bg-black flex-col justify-center items-start hidden pl-8 pr-8 md:pl-16">
         <nav className="flex flex-col items-start gap-8 w-full max-w-sm">
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              target={link.external ? "_blank" : undefined}
-              rel={link.external ? "noopener noreferrer" : undefined}
-              className="mobile-link font-dot text-2xl tracking-widest text-white hover:text-signal-red transition-colors duration-300 w-full text-left border-b border-border pb-4 relative flex items-center justify-start gap-3"
-            >
-              {link.label}
-              {link.external && (
-                <svg className="w-5 h-5 text-signal-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 17L17 7M17 7H7M17 7V17" />
-                </svg>
-              )}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.href.replace("#", "");
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+                className={`mobile-link font-dot text-2xl tracking-widest transition-colors duration-300 w-full text-left border-b border-border pb-4 relative flex items-center justify-start gap-3 ${isActive ? "text-signal-red" : "text-white hover:text-signal-red"}`}
+              >
+                {link.label}
+                {link.external && (
+                  <svg className="w-5 h-5 text-signal-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                )}
+              </Link>
+            );
+          })}
           <div className="mobile-link font-dot text-xs text-secondary mt-12 flex items-center justify-start gap-2">
             <span className="inline-block w-2 h-2 bg-signal-red rounded-full animate-pulse" />
             SYS.STATUS // ONLINE

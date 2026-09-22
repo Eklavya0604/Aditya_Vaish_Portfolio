@@ -2,13 +2,10 @@
 
 import { useActionState, useEffect, useRef } from "react";
 import { useFormStatus } from "react-dom";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HangingLamp from "../ui/Hanginglamp";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { sendEmailAction, ActionState } from "@/app/actions/sendEmail";
-
-gsap.registerPlugin(ScrollTrigger);
+import ScrollReveal from "../ui/ScrollReveal";
 
 const initialState: ActionState = {
   success: false,
@@ -42,28 +39,6 @@ export default function Contact() {
 
   const [state, formAction] = useActionState(sendEmailAction, initialState);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ".contact-fade",
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 75%",
-          },
-        }
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   // Reset form on success
   useEffect(() => {
     if (state.success) {
@@ -74,10 +49,9 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      ref={sectionRef}
-      className="w-full bg-white text-black py-24 md:py-40 px-4 md:px-8 lg:px-12 relative"
+      className="w-full bg-white text-black pt-12 md:pt-16 pb-24 md:pb-40 px-4 md:px-8 lg:px-12 relative scroll-mt-20"
     >
-      <div className="max-w-[1440px] mx-auto w-full flex flex-col gap-16">
+      <ScrollReveal staggerChildren staggerClass="contact-fade" className="max-w-[1440px] mx-auto w-full flex flex-col gap-8 md:gap-10">
         {/* Section start heading */}
         <div className="contact-fade flex flex-col gap-4">
           <h2 className="font-dot text-3xl md:text-5xl uppercase tracking-tight text-black">
@@ -175,7 +149,7 @@ export default function Contact() {
             </form>
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

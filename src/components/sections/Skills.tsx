@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
+import ScrollReveal from '../ui/ScrollReveal'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -131,7 +132,8 @@ export default function Skills() {
     }, [])
 
     return (
-        <div ref={rootRef} className="skills-wrapper w-full bg-white relative z-10">
+        <ScrollReveal>
+            <div ref={rootRef} className="skills-wrapper w-full bg-white relative z-10">
             <header className="flex items-center w-full px-5 md:px-20 pb-20">
                 <h1 className="font-tech text-6xl md:text-[8rem] leading-none m-0 text-black tracking-tighter">
                     What!
@@ -165,5 +167,6 @@ export default function Skills() {
                 </section>
             </main>
         </div>
+        </ScrollReveal>
     )
 }
