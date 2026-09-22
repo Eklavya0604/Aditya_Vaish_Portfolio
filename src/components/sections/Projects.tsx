@@ -31,23 +31,23 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="w-full bg-white text-black pt-12 md:pt-16 pb-24 md:pb-40 px-4 md:px-8 lg:px-12 scroll-mt-20"
+      className="w-full bg-background text-foreground pt-12 md:pt-16 pb-24 md:pb-40 px-4 md:px-8 lg:px-12 scroll-mt-20"
     >
       <ScrollReveal staggerChildren staggerClass="project-card" className="max-w-[1440px] mx-auto w-full">
 
         {/* Header */}
         <div className="project-card flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div>
-            <h2 className="font-dot text-3xl md:text-5xl uppercase tracking-tight mb-2 text-black">
+            <h2 className="font-dot text-3xl md:text-5xl uppercase tracking-tight mb-2 text-foreground">
               02<br />
               <span className="text-signal-red">Projects</span>
             </h2>
-            <div className="font-mono text-[10px] text-black/60 tracking-widest uppercase">
+            <div className="font-mono text-[10px] text-foreground/60 tracking-widest uppercase">
               WORK // RECENT_BUILD
             </div>
           </div>
 
-          <div className="font-dot text-xs text-black/50">
+          <div className="font-dot text-xs text-foreground/50">
             INDEX [03]
           </div>
         </div>
@@ -57,20 +57,20 @@ export default function Projects() {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="project-card group border border-black/20 p-6 md:p-8 flex flex-col justify-between min-h-[320px] hover:border-signal-red transition-colors duration-500 relative overflow-hidden"
+              className="project-card group border border-foreground/20 p-6 md:p-8 flex flex-col justify-between min-h-[320px] hover:border-signal-red transition-colors duration-500 relative overflow-hidden"
             >
               {/* Top Meta */}
               <div className="flex justify-between items-start mb-12">
-                <span className="font-mono text-[10px] text-black/50 tracking-widest">{project.id}</span>
-                <span className="font-mono text-[10px] text-black/60 uppercase border border-black/20 px-2 py-1 group-hover:border-signal-red group-hover:text-signal-red transition-colors duration-500">
+                <span className="font-mono text-[10px] text-foreground/50 tracking-widest">{project.id}</span>
+                <span className="font-mono text-[10px] text-foreground/60 uppercase border border-foreground/20 px-2 py-1 group-hover:border-signal-red group-hover:text-signal-red transition-colors duration-500">
                   {project.type}
                 </span>
               </div>
 
               {/* Title & Desc */}
               <div>
-                <h3 className="font-sans text-2xl md:text-3xl font-bold mb-4 text-black">{project.title}</h3>
-                <p className="font-sans text-black/70 text-sm leading-relaxed mb-8 max-w-sm">
+                <h3 className="font-sans text-2xl md:text-3xl font-bold mb-4 text-foreground">{project.title}</h3>
+                <p className="font-sans text-foreground/70 text-sm leading-relaxed mb-8 max-w-sm">
                   {project.description}
                 </p>
               </div>
@@ -81,9 +81,9 @@ export default function Projects() {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-tech text-xs tracking-widest uppercase text-black/60 group-hover:text-signal-red transition-colors duration-300"
+                  className="inline-flex items-center gap-2 font-tech text-xs tracking-widest uppercase text-foreground/60 group-hover:text-signal-red transition-colors duration-300"
                 >
-                  <span className="w-6 h-[1px] bg-black/60 group-hover:bg-signal-red group-hover:w-12 transition-all duration-500" />
+                  <span className="w-6 h-[1px] bg-foreground/60 group-hover:bg-signal-red group-hover:w-12 transition-all duration-500" />
                   View Node
                 </a>
 

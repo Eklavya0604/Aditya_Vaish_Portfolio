@@ -43,7 +43,7 @@ export default function Home() {
       <Contact />
 
       {/* Basic Footer for closure */}
-      <footer className="w-full py-8 border-t border-border bg-white flex flex-col items-center justify-center">
+      <footer className="w-full py-8 border-t border-border bg-background flex flex-col items-center justify-center">
         <div className="font-mono text-[10px] text-muted tracking-widest uppercase">
           SYS.END // ADITYA_K_V
         </div>

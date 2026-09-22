@@ -72,16 +72,16 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="w-full bg-white text-black pt-12 md:pt-16 pb-24 md:pb-40 px-4 md:px-8 lg:px-12 relative scroll-mt-20"
+      className="w-full bg-background text-foreground pt-12 md:pt-16 pb-24 md:pb-40 px-4 md:px-8 lg:px-12 relative scroll-mt-20"
     >
       <ScrollReveal staggerChildren staggerClass="contact-fade" className="max-w-[1440px] mx-auto w-full flex flex-col gap-8 md:gap-10">
         {/* Section start heading */}
         <div className="contact-fade flex flex-col gap-4">
-          <h2 className="font-dot text-3xl md:text-5xl uppercase tracking-tight text-black">
+          <h2 className="font-dot text-3xl md:text-5xl uppercase tracking-tight text-foreground">
             04<br />
             <span className="text-signal-red">Connect Me</span>
           </h2>
-          <div className="font-mono text-[10px] text-black/60 tracking-widest uppercase">
+          <div className="font-mono text-[10px] text-foreground/60 tracking-widest uppercase">
             SYS // CONTACT
           </div>
         </div>
@@ -91,7 +91,7 @@ export default function Contact() {
           <div className="col-span-4 md:col-span-3 mb-8 md:mb-0">
             <h3
               ref={headingRef}
-              className="contact-fade text-4xl md:text-5xl lg:text-6xl leading-[1] tracking-tight text-black relative z-10"
+              className="contact-fade text-4xl md:text-5xl lg:text-6xl leading-[1] tracking-tight text-foreground relative z-10"
               style={{ fontFamily: "var(--font-ntype82)" }}
             >
               Let&apos;s Build<br />Together
@@ -103,32 +103,32 @@ export default function Contact() {
           </div>
 
           <div className="col-span-4 md:col-span-6 md:col-start-5 flex flex-col gap-12">
-            <p className="contact-fade font-sans text-xl md:text-2xl font-medium leading-tight text-black">
+            <p className="contact-fade font-sans text-xl md:text-2xl font-medium leading-tight text-foreground">
               Looking for a technical partner or just want to discuss an idea? Send a transmission below.
             </p>
 
             <form ref={formRef} action={formAction} className="contact-fade flex flex-col gap-6 w-full max-w-xl">
               <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="font-mono text-[10px] text-black/60 tracking-widest uppercase">Name // IDENT</label>
+                <label htmlFor="name" className="font-mono text-[10px] text-foreground/60 tracking-widest uppercase">Name // IDENT</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   required
                   maxLength={100}
-                  className="w-full bg-transparent border-b border-black/20 pb-2 font-sans text-base text-black focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-black/30"
+                  className="w-full bg-transparent border-b border-foreground/20 pb-2 font-sans text-base text-foreground focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-foreground/30"
                   placeholder="Aditya"
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="font-mono text-[10px] text-black/60 tracking-widest uppercase">Email // ROUTE</label>
+                <label htmlFor="email" className="font-mono text-[10px] text-foreground/60 tracking-widest uppercase">Email // ROUTE</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   required
                   maxLength={100}
-                  className="w-full bg-transparent border-b border-black/20 pb-2 font-sans text-base text-black focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-black/30"
+                  className="w-full bg-transparent border-b border-foreground/20 pb-2 font-sans text-base text-foreground focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-foreground/30"
                   placeholder="aditya@example.com"
                 />
               </div>
@@ -137,7 +137,7 @@ export default function Contact() {
               <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="message" className="font-mono text-[10px] text-black/60 tracking-widest uppercase">Message // DATA</label>
+                <label htmlFor="message" className="font-mono text-[10px] text-foreground/60 tracking-widest uppercase">Message // DATA</label>
                 <textarea
                   id="message"
                   name="message"
@@ -145,7 +145,7 @@ export default function Contact() {
                   minLength={10}
                   maxLength={5000}
                   rows={4}
-                  className="w-full bg-transparent border-b border-black/20 pb-2 font-sans text-base text-black focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-black/30 resize-none"
+                  className="w-full bg-transparent border-b border-foreground/20 pb-2 font-sans text-base text-foreground focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-foreground/30 resize-none"
                   placeholder="Transmission contents..."
                 />
               </div>
@@ -168,7 +168,7 @@ export default function Contact() {
 
               <div className="mt-4 flex flex-row flex-wrap items-center justify-between gap-6 w-full">
                 <SubmitButton isSuccess={state.success} />
-                
+
                 <div className="contact-fade flex gap-4 md:gap-6">
                   {socials.map((social) => (
                     <a
@@ -179,7 +179,7 @@ export default function Contact() {
                       className="group flex items-center justify-center"
                       aria-label={social.name}
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black group-hover:text-signal-red transition-transform hover:scale-110 duration-300 md:w-[28px] md:h-[28px]">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-foreground group-hover:text-signal-red transition-transform hover:scale-110 duration-300 md:w-[28px] md:h-[28px]">
                         {social.icon}
                       </svg>
                     </a>

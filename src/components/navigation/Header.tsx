@@ -83,17 +83,17 @@ export default function Header() {
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
           menuOpen 
-            ? "bg-black border-b border-transparent" 
+            ? "bg-foreground border-b border-transparent" 
             : scrolled 
-              ? "bg-white/80 backdrop-blur-md border-b border-border" 
+              ? "bg-background/80 backdrop-blur-md border-b border-border" 
               : "bg-transparent border-b border-transparent"
         }`}
       >
         <div className="w-full px-4 md:px-8 lg:px-12 h-20 flex items-center justify-between">
           {/* Logo / Identity */}
           <Link href="/" className="group flex items-center gap-4" onClick={() => setMenuOpen(false)}>
-            <div className={`w-3 h-3 group-hover:bg-signal-red transition-colors duration-300 ${menuOpen ? "bg-white" : "bg-black"}`} />
-            <span className={`text-sm uppercase tracking-widest group-hover:text-signal-red transition-colors duration-300 ${menuOpen ? "text-white" : "text-black"}`} style={{ fontFamily: "'DotMatrix', monospace" }}>
+            <div className={`w-3 h-3 group-hover:bg-signal-red transition-colors duration-300 ${menuOpen ? "bg-background" : "bg-foreground"}`} />
+            <span className={`text-sm uppercase tracking-widest group-hover:text-signal-red transition-colors duration-300 ${menuOpen ? "text-background" : "text-foreground"}`} style={{ fontFamily: "'DotMatrix', monospace" }}>
               Aditya Kumar Vaish
             </span>
           </Link>
@@ -134,15 +134,15 @@ export default function Header() {
             aria-label="Toggle Menu"
           >
             <span
-              className={`w-6 h-px bg-black transition-transform duration-300 ${menuOpen ? "rotate-45 translate-y-[7px] bg-signal-red" : "group-hover:bg-signal-red"
+              className={`w-6 h-px bg-foreground transition-transform duration-300 ${menuOpen ? "rotate-45 translate-y-[7px] bg-signal-red" : "group-hover:bg-signal-red"
                 }`}
             />
             <span
-              className={`w-6 h-px bg-black transition-opacity duration-300 ${menuOpen ? "opacity-0" : "group-hover:bg-signal-red"
+              className={`w-6 h-px bg-foreground transition-opacity duration-300 ${menuOpen ? "opacity-0" : "group-hover:bg-signal-red"
                 }`}
             />
             <span
-              className={`w-6 h-px bg-black transition-transform duration-300 ${menuOpen ? "-rotate-45 -translate-y-[7px] bg-signal-red" : "group-hover:bg-signal-red"
+              className={`w-6 h-px bg-foreground transition-transform duration-300 ${menuOpen ? "-rotate-45 -translate-y-[7px] bg-signal-red" : "group-hover:bg-signal-red"
                 }`}
             />
           </button>
@@ -150,7 +150,7 @@ export default function Header() {
       </header>
 
       {/* Mobile Menu Takeover */}
-      <div className="mobile-menu fixed inset-0 z-40 bg-black flex-col justify-center items-start hidden pl-8 pr-8 md:pl-16">
+      <div className="mobile-menu fixed inset-0 z-40 bg-foreground flex-col justify-center items-start hidden pl-8 pr-8 md:pl-16">
         <nav className="flex flex-col items-start gap-8 w-full max-w-sm">
           {navLinks.map((link) => {
             const isActive = activeSection === link.href.replace("#", "");
@@ -161,7 +161,7 @@ export default function Header() {
                 onClick={() => setMenuOpen(false)}
                 target={link.external ? "_blank" : undefined}
                 rel={link.external ? "noopener noreferrer" : undefined}
-                className={`mobile-link font-dot text-2xl tracking-widest transition-colors duration-300 w-full text-left border-b border-border pb-4 relative flex items-center justify-start gap-3 ${isActive ? "text-signal-red" : "text-white hover:text-signal-red"}`}
+                className={`mobile-link font-dot text-2xl tracking-widest transition-colors duration-300 w-full text-left border-b border-border pb-4 relative flex items-center justify-start gap-3 ${isActive ? "text-signal-red" : "text-background hover:text-signal-red"}`}
               >
                 {link.label}
                 {link.external && (

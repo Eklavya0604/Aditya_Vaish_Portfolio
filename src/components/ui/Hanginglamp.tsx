@@ -49,7 +49,7 @@ export default function HangingLamp({
     anchorRef,
     containerRef,
     scale = 1,
-    glowColor = "#ff3b3b",
+    glowColor = "#D71921",
     shadeColor = "#161616",
     flicker = true,
     draggable = true,

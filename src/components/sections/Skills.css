@@ -87,7 +87,7 @@
   */
 
   .skills-wrapper li {
-    color: #E60012;
+    color: #D71921;
   }
 
   @supports (animation-timeline: scroll()) and (animation-range: 0% 100%) {
@@ -156,7 +156,7 @@
   .skills-wrapper[data-snap='true'] {
     scroll-snap-type: y proximity;
   }
-  
+
   .skills-wrapper[data-snap='true'] li {
     scroll-snap-align: center;
   }

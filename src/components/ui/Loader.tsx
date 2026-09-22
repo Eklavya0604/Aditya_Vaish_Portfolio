@@ -47,8 +47,8 @@ export default function Loader() {
     gsap.set(container, { width: txt1W + txt2W });
 
     // ── Colors ──
-    const color1 = "#000000";
-    const color2 = "#E60012";
+    const color1 = "#1B1B1D";
+    const color2 = "#D71921";
 
     // ── moveBar: identical to template ──
     const moveBar = () => {

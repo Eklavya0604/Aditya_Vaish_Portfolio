@@ -90,8 +90,8 @@ export default function Hero() {
       className="relative min-h-[80svh] md:min-h-[100svh] w-full flex flex-col justify-center px-4 md:px-8 lg:px-12 pt-28 md:pt-20 pb-12 md:pb-0"
     >
       {/* Background Grid Pattern */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
-        style={{ backgroundImage: 'radial-gradient(var(--color-white) 1px, transparent 1px)', backgroundSize: '40px 40px' }}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.08]"
+        style={{ backgroundImage: 'radial-gradient(var(--foreground) 1px, transparent 1px)', backgroundSize: '40px 40px' }}
       />
 
       <div className="max-w-[1440px] mx-auto w-full relative z-10">
@@ -99,7 +99,7 @@ export default function Hero() {
         {/* Main Typography Column */}
         <div className="flex flex-col justify-center">
 
-          <h1 className="hero-stagger font-tech text-[clamp(3.5rem,10vw,8rem)] leading-[0.95] font-bold tracking-[0.02em] uppercase mb-2 md:mb-4 text-black">
+          <h1 className="hero-stagger font-tech text-[clamp(3.5rem,10vw,8rem)] leading-[0.95] font-bold tracking-[0.02em] uppercase mb-2 md:mb-4 text-foreground">
             Aditya<br />
             Vaish
           </h1>
@@ -117,11 +117,11 @@ export default function Hero() {
                   rel="noopener noreferrer"
                   className="group flex items-center gap-2 md:gap-3"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black group-hover:text-signal-red transition-colors duration-300 md:w-[28px] md:h-[28px] shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-foreground group-hover:text-signal-red transition-colors duration-300 md:w-[28px] md:h-[28px] shrink-0">
                     {social.icon}
                   </svg>
                   <div className="flex flex-col items-start">
-                    <div className="flex items-center gap-1 font-tech tracking-wide text-[11px] md:text-sm font-bold text-black group-hover:text-signal-red transition-colors duration-300">
+                    <div className="flex items-center gap-1 font-tech tracking-wide text-[11px] md:text-sm font-bold text-foreground group-hover:text-signal-red transition-colors duration-300">
                       {social.name} <span className="text-signal-red">↗</span>
                     </div>
                     <div className="font-mono text-[8px] md:text-[9px] text-muted tracking-widest text-left leading-tight mt-0.5 uppercase">
@@ -141,10 +141,10 @@ export default function Hero() {
           <div className="hero-stagger flex flex-wrap items-center gap-6">
             <a
               href="#projects"
-              className="group flex items-center gap-3 font-tech text-sm uppercase tracking-wider text-black hover:text-signal-red transition-colors duration-300"
+              className="group flex items-center gap-3 font-tech text-sm uppercase tracking-wider text-foreground hover:text-signal-red transition-colors duration-300"
             >
               <div className="w-10 h-10 border border-border flex items-center justify-center group-hover:border-signal-red transition-colors duration-300">
-                <span className="transform group-hover:translate-x-1 transition-transform duration-300 text-black group-hover:text-signal-red">→</span>
+                <span className="transform group-hover:translate-x-1 transition-transform duration-300 text-foreground group-hover:text-signal-red">→</span>
               </div>
               View Architecture
             </a>

@@ -3,31 +3,32 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import SpectaclesIcon from "@/components/ui/SpectaclesIcon";
+import { useTheme } from "@/components/ThemeProvider";
 
 const socials = [
   {
-    name: "GITHUB",
+    name: "Github",
     url: "https://github.com/Eklavya0604",
     sub1: "SOURCE /",
     sub2: "PROJECTS",
     icon: <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
   },
   {
-    name: "LINKEDIN",
+    name: "LinkedIn",
     url: "https://www.linkedin.com/in/aditya-vaish-482a11281/",
     sub1: "PROFESSIONAL",
     sub2: "/ NETWORK",
     icon: <><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></>
   },
   {
-    name: "EMAIL",
+    name: "Email",
     url: "mailto:kumareklavya744@gmail.com",
     sub1: "DIRECT",
     sub2: "CONTACT",
     icon: <><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></>
   },
   {
-    name: "INSTAGRAM",
+    name: "Instagram",
     url: "https://www.instagram.com/aditya_k.__/?__pwa=1",
     sub1: "PERSONAL /",
     sub2: "SOCIAL",
@@ -43,6 +44,7 @@ const titles = [
 ];
 
 export default function HeroV2() {
+  const { theme, toggleTheme } = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
 
@@ -98,8 +100,8 @@ export default function HeroV2() {
       className="relative min-h-[75svh] md:min-h-[100svh] w-full flex flex-col justify-center px-4 md:px-8 lg:px-12 pt-28 pb-4 md:pt-32 md:pb-0"
     >
       {/* Background Grid Pattern */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
-        style={{ backgroundImage: 'radial-gradient(var(--color-white) 1px, transparent 1px)', backgroundSize: '40px 40px' }}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.08]"
+        style={{ backgroundImage: 'radial-gradient(var(--foreground) 1px, transparent 1px)', backgroundSize: '40px 40px' }}
       />
 
       <div className="max-w-[1440px] mx-auto w-full relative z-10 flex flex-col items-center justify-center -translate-y-8 md:-translate-y-16">
@@ -108,11 +110,15 @@ export default function HeroV2() {
         <div className="flex flex-col items-center justify-center w-full max-w-5xl relative z-20 text-center">
 
           {/* Spectacles SVG positioned above the title in the center */}
-          <div className="spectacles-icon flex w-full max-w-[120px] md:max-w-[180px] lg:max-w-[220px] z-10 pointer-events-none mb-2">
-            <SpectaclesIcon className="w-full h-auto text-signal-red drop-shadow-sm opacity-90 mx-auto" />
-          </div>
+          <button 
+            onClick={toggleTheme}
+            className="spectacles-icon group/spec flex w-full max-w-[120px] md:max-w-[180px] lg:max-w-[220px] z-10 cursor-pointer mb-2 transition-transform hover:scale-105 active:scale-95"
+            aria-label="Toggle Theme"
+          >
+            <SpectaclesIcon className="w-full h-auto text-signal-red drop-shadow-sm opacity-90 group-hover/spec:opacity-100 mx-auto transition-opacity duration-300" />
+          </button>
 
-          <h1 className="hero-stagger font-tech text-[clamp(3.2rem,11vw,9rem)] leading-[0.95] font-bold tracking-[0.02em] uppercase mb-4 md:mb-6 text-black text-center whitespace-nowrap">
+          <h1 className="hero-stagger font-tech text-[clamp(3.2rem,11vw,9rem)] leading-[0.95] font-bold tracking-[0.02em] uppercase mb-4 md:mb-6 text-foreground text-center whitespace-nowrap">
             Aditya Vaish
           </h1>
 
@@ -129,11 +135,11 @@ export default function HeroV2() {
                   rel="noopener noreferrer"
                   className="group flex items-center justify-center md:justify-start gap-2 md:gap-3"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black group-hover:text-signal-red transition-colors duration-300 md:w-[28px] md:h-[28px] shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-foreground group-hover:text-signal-red transition-colors duration-300 md:w-[28px] md:h-[28px] shrink-0">
                     {social.icon}
                   </svg>
                   <div className="flex flex-col items-start text-left">
-                    <div className="flex items-center gap-1 font-tech tracking-wide text-[11px] md:text-sm font-bold text-black group-hover:text-signal-red transition-colors duration-300">
+                    <div className="flex items-center gap-1 font-tech tracking-widest text-[11px] md:text-sm font-bold text-foreground group-hover:text-signal-red transition-colors duration-300">
                       {social.name} <span className="text-signal-red">↗</span>
                     </div>
                     <div className="font-mono text-[8px] md:text-[9px] text-muted tracking-widest leading-tight mt-0.5 uppercase">

@@ -23,7 +23,7 @@
 
 :root {
   /* Core Color System */
-  --color-black: #000000;
+  --color-black: #1B1B1D;
   --color-soft-black: #0E0E0E;
   --color-dark-grey: #171717;
   --color-border: #222222;
@@ -35,6 +35,12 @@
 
   --background: var(--color-white);
   --foreground: var(--color-black);
+}
+
+.dark {
+  --background: var(--color-black);
+  --foreground: var(--color-white);
+  --color-border: #333333;
 }
 
 @theme inline {
@@ -100,4 +106,23 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-signal-red);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+.theme-transitioning,
+.theme-transitioning * {
+  transition: background-color 1.2s ease, color 1.2s ease, border-color 1.2s ease, fill 1.2s ease, stroke 1.2s ease !important;
 }

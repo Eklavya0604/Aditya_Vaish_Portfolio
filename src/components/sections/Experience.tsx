@@ -26,18 +26,18 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="w-full bg-white text-black pt-12 md:pt-16 pb-24 md:pb-40 px-4 md:px-8 lg:px-12 relative overflow-hidden scroll-mt-20"
+      className="w-full bg-background text-foreground pt-12 md:pt-16 pb-24 md:pb-40 px-4 md:px-8 lg:px-12 relative overflow-hidden scroll-mt-20"
     >
       <ScrollReveal staggerChildren staggerClass="experience-card" className="max-w-[1440px] mx-auto w-full relative z-10">
 
         {/* Header */}
         <div className="experience-card flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div>
-            <h2 className="font-dot text-3xl md:text-5xl uppercase tracking-tight mb-2 text-black">
+            <h2 className="font-dot text-3xl md:text-5xl uppercase tracking-tight mb-2 text-foreground">
               03<br />
               <span className="text-signal-red">Experience</span>
             </h2>
-            <div className="font-mono text-[10px] text-black/60 tracking-widest uppercase">
+            <div className="font-mono text-[10px] text-foreground/60 tracking-widest uppercase">
               WORK // HISTORY
             </div>
           </div>
@@ -51,9 +51,9 @@ export default function Experience() {
               className="experience-card group grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 relative"
             >
               <div className="hidden md:block col-span-1 relative">
-                <div className="w-3 h-3 bg-black/20 group-hover:bg-signal-red rounded-full transition-colors duration-500 absolute top-8 left-1/2 -translate-x-1/2 z-10" />
+                <div className="w-3 h-3 bg-foreground/20 group-hover:bg-signal-red rounded-full transition-colors duration-500 absolute top-8 left-1/2 -translate-x-1/2 z-10" />
                 {index !== experiences.length - 1 && (
-                  <div className="w-px bg-black/10 absolute top-11 bottom-[-5rem] md:bottom-[-6rem] left-1/2 -translate-x-1/2 group-hover:bg-signal-red/30 transition-colors duration-500" />
+                  <div className="w-px bg-foreground/10 absolute top-11 bottom-[-5rem] md:bottom-[-6rem] left-1/2 -translate-x-1/2 group-hover:bg-signal-red/30 transition-colors duration-500" />
                 )}
               </div>
 
@@ -64,24 +64,24 @@ export default function Experience() {
                   <div className="font-mono text-[10px] text-signal-red tracking-widest uppercase mb-2">
                     {exp.period}
                   </div>
-                  <h3 className="font-tech tracking-wide text-xl md:text-2xl font-bold text-black mb-1">
+                  <h3 className="font-tech tracking-wide text-xl md:text-2xl font-bold text-foreground mb-1">
                     {exp.company}
                   </h3>
                   {exp.location && (
-                    <div className="font-mono text-[10px] text-black/40 tracking-wider uppercase mt-1">
+                    <div className="font-mono text-[10px] text-foreground/40 tracking-wider uppercase mt-1">
                       {exp.location}
                     </div>
                   )}
                 </div>
 
                 {/* Role & Details */}
-                <div className="md:w-3/4 flex flex-col border-l-2 border-black/5 md:border-none pl-4 md:pl-0 md:mt-[22px]">
+                <div className="md:w-3/4 flex flex-col border-l-2 border-foreground/5 md:border-none pl-4 md:pl-0 md:mt-[22px]">
                   <div className="mb-6">
-                    <h4 className="font-sans text-lg md:text-xl text-black/80">
+                    <h4 className="font-sans text-lg md:text-xl text-foreground/80">
                       {exp.role}
                     </h4>
                     {exp.subRole && (
-                      <div className="font-sans text-sm text-black/50 mt-1">
+                      <div className="font-sans text-sm text-foreground/50 mt-1">
                         {exp.subRole}
                       </div>
                     )}
@@ -90,7 +90,7 @@ export default function Experience() {
                   {/* Skills tags */}
                   <div className="flex flex-wrap gap-2 mt-auto">
                     {exp.skills.map(skill => (
-                      <span key={skill} className="font-mono text-[9px] uppercase tracking-widest px-2 py-1 border border-black/10 text-black/50 group-hover:border-signal-red/50 group-hover:text-signal-red transition-colors duration-500">
+                      <span key={skill} className="font-mono text-[9px] uppercase tracking-widest px-2 py-1 border border-foreground/10 text-foreground/50 group-hover:border-signal-red/50 group-hover:text-signal-red transition-colors duration-500">
                         {skill}
                       </span>
                     ))}

@@ -77,7 +77,7 @@ export default function TechStack() {
   }, []);
 
   return (
-    <section className="w-full bg-white pt-24 pb-4 z-10 relative overflow-hidden">
+    <section className="w-full bg-background pt-24 pb-4 z-10 relative overflow-hidden">
       <style>{`
         @keyframes scroll {
           0% { transform: translateX(0); }

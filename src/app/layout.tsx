@@ -4,6 +4,7 @@ import CustomCursor from "@/components/ui/CustomCursor";
 import Loader from "@/components/ui/Loader";
 import '@/components/sections/Skills.css'
 import "./globals.css";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -70,9 +71,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`h-full antialiased ${spaceGrotesk.variable} ${spaceMono.variable}`}>
       <body className="min-h-full flex flex-col font-sans selection:bg-signal-red selection:text-white">
-        <Loader />
-        <CustomCursor />
-        {children}
+        <ThemeProvider>
+          <Loader />
+          <CustomCursor />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

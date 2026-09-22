@@ -183,7 +183,7 @@ function IdeasToProductFlow() {
       .to(
         tgtWord,
         {
-          color: "#E60012",
+          color: "#D71921",
           scale: 1.08,
           duration: 0.2,
           ease: "back.out(2)",
@@ -243,13 +243,13 @@ function IdeasToProductFlow() {
 
   return (
     <div ref={containerRef} className="relative pt-3 pb-1">
-      <p className="text-black/70 text-base md:text-lg leading-relaxed">
-        <span className="inline-block whitespace-nowrap font-medium text-black">
+      <p className="text-foreground/70 text-base md:text-lg leading-relaxed">
+        <span className="inline-block whitespace-nowrap font-medium text-foreground">
           I convert{" "}
           <span
             ref={srcWordRef}
             onClick={playAnimation}
-            className="relative inline-block font-semibold text-black px-1 mx-1 cursor-pointer select-none"
+            className="relative inline-block font-semibold text-foreground px-1 mx-1 cursor-pointer select-none"
             title="Click to replay"
           >
             ideas
@@ -280,7 +280,7 @@ function IdeasToProductFlow() {
             className="circle-path"
             d="M38.47.5S.5 2.67.5 19.76s30.87 21.7 47.3 21.7 44.64-6 44.64-20.48S55.32 3.84 42 3.75c-7.4 0-20.07.81-28.21 9"
             fill="none"
-            stroke="#E60012"
+            stroke="#D71921"
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -294,7 +294,7 @@ function IdeasToProductFlow() {
           ref={arrowPathRef}
           className="arrow-path"
           fill="none"
-          stroke="#E60012"
+          stroke="#D71921"
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -307,8 +307,8 @@ function IdeasToProductFlow() {
             ref={arrowHeadRef}
             className="arrow-head"
             points="-6,-4 2,0 -6,4"
-            fill="#E60012"
-            stroke="#E60012"
+            fill="#D71921"
+            stroke="#D71921"
             strokeWidth="1.5"
             strokeLinejoin="round"
             style={{ opacity: 0 }}
@@ -325,16 +325,16 @@ export default function About() {
   return (
     <section
       id="about"
-      className="w-full bg-white text-black pt-4 md:pt-16 pb-24 md:pb-40 px-4 md:px-8 lg:px-12 relative scroll-mt-20"
+      className="w-full bg-background text-foreground pt-4 md:pt-16 pb-24 md:pb-40 px-4 md:px-8 lg:px-12 relative scroll-mt-20"
     >
       <ScrollReveal staggerChildren staggerClass="about-fade" className="max-w-[1440px] mx-auto w-full grid grid-cols-4 md:grid-cols-12 gap-8 md:gap-16">
         {/* Header / Meta */}
         <div className="col-span-4 md:col-span-3 flex flex-col gap-6">
-          <h2 className="about-fade font-dot text-3xl md:text-5xl uppercase tracking-tight text-black">
+          <h2 className="about-fade font-dot text-3xl md:text-5xl uppercase tracking-tight text-foreground">
             01<br />
             <span className="text-signal-red">About</span>
           </h2>
-          <div className="about-fade font-mono text-[10px] text-black/60 tracking-widest uppercase mt-4">
+          <div className="about-fade font-mono text-[10px] text-foreground/60 tracking-widest uppercase mt-4">
             IDENT // ADITYA_K_V
             <br />
             SYS // DEV_ENV
@@ -344,7 +344,7 @@ export default function About() {
         {/* Content */}
         <div className="col-span-4 md:col-span-9 flex flex-col md:flex-row gap-12 lg:gap-24 items-start">
           {/* Portrait/Profile */}
-          <div className="about-fade relative w-full md:w-1/2 aspect-[4/5] border border-black/20 flex items-center justify-center overflow-hidden group">
+          <div className="about-fade relative w-full md:w-[40%] lg:w-[30%] aspect-[4/5] border border-foreground/20 flex items-center justify-center overflow-hidden group">
             <Image
               src="/assets/Profile_picture.png"
               alt="Aditya Profile"
@@ -358,12 +358,12 @@ export default function About() {
 
           {/* Text Content */}
           <div className="about-fade flex-1 flex flex-col gap-6 max-w-xl">
-            <h3 className="font-sans text-2xl md:text-3xl font-medium leading-tight text-black">
+            <h3 className="font-sans text-2xl md:text-3xl font-medium leading-tight text-foreground">
               Computer Science Engineer focused on software engineering, scalable systems, and thoughtful design.
             </h3>
 
             <div className="font-sans space-y-5">
-              {/* <p className="text-black/70 text-base md:text-lg leading-relaxed">
+              {/* <p className="text-foreground/70 text-base md:text-lg leading-relaxed">
                 I bridge engineering and design to create digital experiences that feel
                 responsive, purposeful, and refined.
               </p>  */}
@@ -371,7 +371,7 @@ export default function About() {
               {/* Ideas → Product Connection */}
               <IdeasToProductFlow />
 
-              <p className="text-black/70 text-base md:text-lg leading-relaxed">
+              <p className="text-foreground/70 text-base md:text-lg leading-relaxed">
                 From structure to interaction, I focus on clean systems, modular
                 components, and performance.
               </p>
