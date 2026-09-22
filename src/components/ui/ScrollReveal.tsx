@@ -20,9 +20,9 @@ export default function ScrollReveal({
   children,
   staggerChildren = false,
   staggerClass = "reveal-item",
-  yOffset = 50,
-  duration = 1.5,
-  staggerDuration = 0.3,
+  yOffset = 30,
+  duration = 1.2,
+  staggerDuration = 0.2,
   className = "",
 }: ScrollRevealProps) {
   const containerRef = useRef<HTMLDivElement>(null);

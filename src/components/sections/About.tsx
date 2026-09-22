@@ -323,7 +323,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="w-full bg-white text-black pt-12 md:pt-16 pb-24 md:pb-40 px-4 md:px-8 lg:px-12 relative scroll-mt-20"
+      className="w-full bg-white text-black pt-4 md:pt-16 pb-24 md:pb-40 px-4 md:px-8 lg:px-12 relative scroll-mt-20"
     >
       <ScrollReveal staggerChildren staggerClass="about-fade" className="max-w-[1440px] mx-auto w-full grid grid-cols-4 md:grid-cols-12 gap-8 md:gap-16">
         {/* Header / Meta */}

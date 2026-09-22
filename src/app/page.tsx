@@ -1,5 +1,5 @@
 import Header from "@/components/navigation/Header";
-import Hero from "@/components/sections/Hero";
+import HeroV2 from "@/components/sections/HeroV2";
 import About from "@/components/sections/About";
 import Skills from "@/components/sections/Skills";
 import TechStack from "@/components/sections/TechStack";
@@ -34,7 +34,7 @@ export default function Home() {
         }}
       />
       <Header />
-      <Hero />
+      <HeroV2 />
       <About />
       <Skills />
       <TechStack />
