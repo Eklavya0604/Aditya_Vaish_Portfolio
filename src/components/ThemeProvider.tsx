@@ -52,16 +52,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    let x = e?.clientX ?? window.innerWidth / 2;
-    let y = e?.clientY ?? window.innerHeight / 2;
+    let x = e.clientX;
+    let y = e.clientY;
 
-    // Use the button's actual center for a perfect epicenter, completely bypassing mobile touch event quirks
-    const btn = document.getElementById("theme-toggle-btn");
-    if (btn) {
-      const rect = btn.getBoundingClientRect();
-      x = rect.left + rect.width / 2;
-      y = rect.top + rect.height / 2;
-    } else if (e?.currentTarget) {
+    // Use the button's actual center for a perfect epicenter, especially on mobile touch
+    if (e.currentTarget) {
       const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
       x = rect.left + rect.width / 2;
       y = rect.top + rect.height / 2;

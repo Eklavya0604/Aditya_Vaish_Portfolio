@@ -111,7 +111,6 @@ export default function HeroV2() {
 
           {/* Spectacles SVG positioned above the title in the center */}
           <button 
-            id="theme-toggle-btn"
             onClick={toggleTheme}
             className="spectacles-icon group/spec flex w-full max-w-[120px] md:max-w-[180px] lg:max-w-[220px] z-10 cursor-pointer mb-2 transition-transform hover:scale-105 active:scale-95"
             aria-label="Toggle Theme"
