@@ -34,8 +34,16 @@ const socials = [
   }
 ];
 
+const titles = [
+  "Software Developer",
+  "Designer",
+  "Frontend Developer",
+  "Backend Engineer"
+];
+
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -49,7 +57,31 @@ export default function Hero() {
       );
     }, containerRef);
 
-    return () => ctx.revert();
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      if (!textRef.current) return;
+      gsap.to(textRef.current, {
+        y: -10,
+        opacity: 0,
+        duration: 0.3,
+        onComplete: () => {
+          currentIndex = (currentIndex + 1) % titles.length;
+          if (textRef.current) {
+            textRef.current.innerText = titles[currentIndex];
+            gsap.fromTo(
+              textRef.current,
+              { y: 10, opacity: 0 },
+              { y: 0, opacity: 1, duration: 0.3 }
+            );
+          }
+        },
+      });
+    }, 2500);
+
+    return () => {
+      ctx.revert();
+      clearInterval(interval);
+    };
   }, []);
 
   return (
@@ -67,10 +99,14 @@ export default function Hero() {
         {/* Main Typography Column */}
         <div className="flex flex-col justify-center">
 
-          <h1 className="hero-stagger font-tech text-[clamp(3.5rem,10vw,8rem)] leading-[0.95] font-bold tracking-[0.02em] uppercase mb-8 md:mb-12 text-black">
+          <h1 className="hero-stagger font-tech text-[clamp(3.5rem,10vw,8rem)] leading-[0.95] font-bold tracking-[0.02em] uppercase mb-2 md:mb-4 text-black">
             Aditya<br />
             Vaish
           </h1>
+
+          <div className="hero-stagger font-dot text-signal-red text-lg md:text-2xl tracking-widest uppercase mb-8 md:mb-12 h-8 flex items-center">
+            <span ref={textRef} className="inline-block">Software Developer</span>
+          </div>
 
           <div className="hero-stagger grid grid-cols-2 md:flex md:flex-wrap items-center gap-x-2 gap-y-6 md:gap-x-6 md:gap-y-4 mb-10 md:mb-12">
             {socials.map((social, idx) => (
