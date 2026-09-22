@@ -83,7 +83,7 @@ export default function TechStack() {
           100% { transform: translateX(-50%); }
         }
         .animate-scroll {
-          animation: scroll 40s linear infinite;
+          animation: scroll 120s linear infinite;
           width: max-content;
         }
       `}</style>
@@ -93,24 +93,23 @@ export default function TechStack() {
           Skills
         </h2>
       </header>
-      
+
       <div className="w-full relative flex overflow-hidden py-10">
         <div className="flex animate-scroll items-center">
-          {[...techLogos, ...techLogos].map((src, idx) => {
+          {[...techLogos, ...techLogos, ...techLogos, ...techLogos].map((src, idx) => {
             const isActive = activeIndex === idx;
-            
+
             return (
-              <div 
+              <div
                 key={idx}
                 ref={(el) => { itemsRef.current[idx] = el; }}
-                className={`relative flex items-center justify-center transition-all duration-150 ease-out shrink-0 mx-4 md:mx-6 h-16 md:h-20 w-24 md:w-32 ${
-                  isActive 
-                    ? "scale-125 -translate-y-2 grayscale-0 opacity-100" 
-                    : "scale-100 translate-y-0 grayscale opacity-60"
-                }`}
+                className={`relative flex items-center justify-center transition-all duration-800 ease-in-out shrink-0 mx-4 md:mx-6 h-16 md:h-20 w-24 md:w-32 ${isActive
+                  ? "scale-125 -translate-y-2 grayscale-0 opacity-100"
+                  : "scale-100 translate-y-0 grayscale opacity-60"
+                  }`}
               >
-                <Image 
-                  src={src} 
+                <Image
+                  src={src}
                   alt="Tech Logo"
                   width={128}
                   height={80}
