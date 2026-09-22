@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useRef } from "react";
 
 type Theme = "light" | "dark";
 
@@ -13,6 +13,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("light");
+  const transitionRef = useRef<any>(null);
 
   useEffect(() => {
     const stored = localStorage.getItem("theme") as Theme | null;
@@ -48,7 +49,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       applyTheme(next);
       setTimeout(() => {
         document.documentElement.classList.remove("theme-transitioning");
-      }, 1200);
+      }, 1500);
       return;
     }
 
@@ -67,9 +68,16 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       Math.max(y, innerHeight - y)
     );
 
+    if (transitionRef.current) {
+      transitionRef.current.skipTransition();
+    }
+
     const transition = document.startViewTransition(() => {
+      document.documentElement.classList.add("disable-transitions");
       applyTheme(next);
     });
+    
+    transitionRef.current = transition;
 
     transition.ready.then(() => {
       const clipPath = [
@@ -81,11 +89,18 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
           clipPath: clipPath,
         },
         {
-          duration: 1200,
+          duration: 1000,
+          delay: 50,
+          fill: "both",
           easing: "cubic-bezier(0.25, 1, 0.5, 1)",
           pseudoElement: "::view-transition-new(root)"
         }
       );
+    });
+
+    transition.finished.finally(() => {
+      document.documentElement.classList.remove("disable-transitions");
+      transitionRef.current = null;
     });
   };
 
