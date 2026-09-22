@@ -20,6 +20,9 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://adityavaish.dev"),
+  alternates: {
+    canonical: '/',
+  },
   title: {
     default: "Aditya Kumar Vaish | Backend Engineer",
     template: "%s | Aditya Kumar Vaish",
@@ -27,13 +30,20 @@ export const metadata: Metadata = {
   description: "Software Engineer specializing in Backend Development, Java, Spring Boot, and Distributed Systems.",
   keywords: [
     "Aditya Kumar Vaish",
+    "Aditya Vaish",
+    "Aditya",
+    "Vaish",
     "Backend Engineer",
-    "Software Engineer",
-    "Java",
+    "Software Developer",
+    "Java Developer",
     "Spring Boot",
     "React",
-    "Portfolio",
+    "Gorakhpur",
     "Ghaziabad",
+    "B.tech CSE",
+    "Computer Science and Engineering",
+    "Software Engineer",
+    "Distributed Systems"
   ],
   authors: [{ name: "Aditya Kumar Vaish", url: "https://adityavaish.dev" }],
   creator: "Aditya Kumar Vaish",
@@ -43,12 +53,21 @@ export const metadata: Metadata = {
     url: "https://adityavaish.dev",
     title: "Aditya Kumar Vaish | Backend Engineer",
     description: "Software Engineer specializing in Backend Development, Java, Spring Boot, and Distributed Systems.",
-    siteName: "Aditya Kumar Vaish",
+    siteName: "Aditya Kumar Vaish Portfolio",
+    images: [
+      {
+        url: "/assets/Profile_picture.png",
+        width: 800,
+        height: 1000,
+        alt: "Aditya Kumar Vaish - Backend Engineer",
+      }
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Aditya Kumar Vaish | Backend Engineer",
     description: "Software Engineer specializing in Backend Development, Java, Spring Boot, and Distributed Systems.",
+    images: ["/assets/Profile_picture.png"],
   },
   robots: {
     index: true,

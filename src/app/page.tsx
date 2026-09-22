@@ -14,23 +14,38 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Aditya Kumar Vaish",
-            "url": "https://adityavaish.dev",
-            "jobTitle": "Backend Engineer",
-            "alumniOf": {
-              "@type": "CollegeOrUniversity",
-              "name": "ABES Engineering College"
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Aditya Kumar Vaish Portfolio",
+              "url": "https://adityavaish.dev"
             },
-            "sameAs": [
-              "https://github.com/Eklavya0604",
-              "https://www.linkedin.com/in/aditya-vaish-482a11281/",
-              "https://www.instagram.com/aditya_k.__/?__pwa=1"
-            ],
-            "knowsAbout": ["Java", "Spring Boot", "React", "Distributed Systems", "SQL"]
-          })
+            {
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Aditya Kumar Vaish",
+              "url": "https://adityavaish.dev",
+              "jobTitle": "Backend Engineer",
+              "description": "Software Engineer specializing in Backend Development, Java, Spring Boot, and Distributed Systems.",
+              "image": "https://adityavaish.dev/assets/Profile_picture.png",
+              "alumniOf": {
+                "@type": "CollegeOrUniversity",
+                "name": "ABES Engineering College",
+                "location": "Ghaziabad, India"
+              },
+              "homeLocation": {
+                "@type": "Place",
+                "name": "Gorakhpur, India"
+              },
+              "sameAs": [
+                "https://github.com/Eklavya0604",
+                "https://www.linkedin.com/in/aditya-vaish-482a11281/",
+                "https://www.instagram.com/aditya_k.__/?__pwa=1"
+              ],
+              "knowsAbout": ["Java", "Spring Boot", "React", "Distributed Systems", "SQL", "Backend Development", "Computer Science"]
+            }
+          ])
         }}
       />
       <Header />

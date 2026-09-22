@@ -347,7 +347,7 @@ export default function About() {
           <div className="about-fade relative w-full md:w-[40%] lg:w-[30%] aspect-[4/5] border border-foreground/20 flex items-center justify-center overflow-hidden group">
             <Image
               src="/assets/Profile_picture.png"
-              alt="Aditya Profile"
+              alt="Aditya Kumar Vaish - Backend Engineer Profile Picture"
               fill
               className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
             />

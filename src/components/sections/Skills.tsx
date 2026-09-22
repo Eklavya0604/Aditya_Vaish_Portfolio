@@ -135,17 +135,17 @@ export default function Skills() {
         <ScrollReveal className="w-full">
             <div ref={rootRef} className="skills-wrapper w-full bg-background relative z-10">
                 <header className="flex items-center w-full px-5 md:px-20 pb-20">
-                    <h1 className="font-tech text-6xl md:text-[8rem] leading-none m-0 text-foreground tracking-tighter">
+                    <h2 className="font-tech text-6xl md:text-[8rem] leading-none m-0 text-foreground tracking-tighter">
                         What!
-                    </h1>
+                    </h2>
                 </header>
 
                 <main className="w-full">
                     <section className="sticky-section content flex gap-4 md:gap-8 leading-tight w-full pl-5 md:pl-20">
-                        <h2 className="font-tech sticky top-[calc(50%-0.5lh)] text-4xl md:text-7xl text-foreground m-0 inline-block h-fit pb-3">
+                        <h3 className="font-tech sticky top-[calc(50%-0.5lh)] text-4xl md:text-7xl text-foreground m-0 inline-block h-fit pb-3">
                             <span aria-hidden="true">I can</span>
                             <span className="sr-only">I can deploy things.</span>
-                        </h2>
+                        </h3>
                         <ul
                             aria-hidden="true"
                             style={{ '--count': words.length } as React.CSSProperties}
