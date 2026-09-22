@@ -13,7 +13,7 @@ const words = [
     'build.',
     'solve.',
     'innovate.',
-    'ship.',
+    'deploy.',
 ]
 
 export default function Skills() {
@@ -134,39 +134,39 @@ export default function Skills() {
     return (
         <ScrollReveal className="w-full">
             <div ref={rootRef} className="skills-wrapper w-full bg-white relative z-10">
-            <header className="flex items-center w-full px-5 md:px-20 pb-20">
-                <h1 className="font-tech text-6xl md:text-[8rem] leading-none m-0 text-black tracking-tighter">
-                    What!
-                </h1>
-            </header>
+                <header className="flex items-center w-full px-5 md:px-20 pb-20">
+                    <h1 className="font-tech text-6xl md:text-[8rem] leading-none m-0 text-black tracking-tighter">
+                        What!
+                    </h1>
+                </header>
 
-            <main className="w-full">
-                <section className="sticky-section content flex gap-4 md:gap-8 leading-tight w-full pl-5 md:pl-20">
-                    <h2 className="font-tech sticky top-[calc(50%-0.5lh)] text-4xl md:text-7xl text-black m-0 inline-block h-fit">
-                        <span aria-hidden="true">I can</span>
-                        <span className="sr-only">I can ship things.</span>
-                    </h2>
-                    <ul
-                        aria-hidden="true"
-                        style={{ '--count': words.length } as React.CSSProperties}
-                        className="font-dot text-4xl md:text-7xl font-semibold p-0 m-0 list-none text-black"
-                    >
-                        {words.map((word, i) => (
-                            <li
-                                key={i}
-                                ref={(el) => {
-                                    itemsRef.current[i] = el
-                                }}
-                                style={{ '--i': i } as React.CSSProperties}
-                                className="tracking-tighter"
-                            >
-                                {word}
-                            </li>
-                        ))}
-                    </ul>
-                </section>
-            </main>
-        </div>
+                <main className="w-full">
+                    <section className="sticky-section content flex gap-4 md:gap-8 leading-tight w-full pl-5 md:pl-20">
+                        <h2 className="font-tech sticky top-[calc(50%-0.5lh)] text-4xl md:text-7xl text-black m-0 inline-block h-fit">
+                            <span aria-hidden="true">I can</span>
+                            <span className="sr-only">I can deploy things.</span>
+                        </h2>
+                        <ul
+                            aria-hidden="true"
+                            style={{ '--count': words.length } as React.CSSProperties}
+                            className="font-dot text-4xl md:text-7xl font-semibold p-0 m-0 list-none text-black"
+                        >
+                            {words.map((word, i) => (
+                                <li
+                                    key={i}
+                                    ref={(el) => {
+                                        itemsRef.current[i] = el
+                                    }}
+                                    style={{ '--i': i } as React.CSSProperties}
+                                    className="pb-2"
+                                >
+                                    {word}
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                </main>
+            </div>
         </ScrollReveal>
     )
 }
