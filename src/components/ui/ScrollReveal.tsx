@@ -40,6 +40,7 @@ export default function ScrollReveal({
           duration: duration,
           stagger: staggerChildren ? staggerDuration : 0,
           ease: "power2.out",
+          clearProps: "transform", // Crucial for position: sticky to work inside
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 85%",
