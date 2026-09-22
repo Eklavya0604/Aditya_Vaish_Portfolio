@@ -90,7 +90,7 @@ export default function TechStack() {
       `}</style>
 
       <ScrollReveal staggerChildren staggerClass="tech-fade" className="w-full">
-        <header className="tech-fade flex items-center w-full px-5 md:px-20 pb-8 md:pb-12">
+        <header className="tech-fade flex items-center w-full px-4 md:px-8 lg:px-12 pb-8 md:pb-12">
           <h2 className="font-dot text-3xl md:text-5xl uppercase tracking-tight m-0 text-signal-red">
             Skills
           </h2>

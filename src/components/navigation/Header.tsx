@@ -75,7 +75,7 @@ export default function Header() {
     { label: "02 / PROJECTS", href: "#projects" },
     { label: "03 / EXPERIENCE", href: "#experience" },
     { label: "04 / CONTACT", href: "#contact" },
-    { label: "05 / RESUME", href: "https://drive.google.com/file/d/10UXTvhUK6dMjz4Vu_8Ot5y3Szfonkr9s/view?usp=drive_link", external: true },
+    { label: "05 / RESUME", href: "https://drive.google.com/file/d/1sNfOD5P3zhDLl8k8EFgz3qQORWre8dN0/view?usp=sharing", external: true },
   ];
 
   return (

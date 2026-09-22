@@ -224,8 +224,10 @@ function IdeasToProductFlow() {
     const st = ScrollTrigger.create({
       trigger: containerRef.current,
       start: "top 85%",
-      once: true,
       onEnter: () => {
+        playAnimation();
+      },
+      onEnterBack: () => {
         playAnimation();
       },
     });

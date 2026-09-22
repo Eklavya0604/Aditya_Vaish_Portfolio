@@ -142,7 +142,7 @@ export default function Skills() {
 
                 <main className="w-full">
                     <section className="sticky-section content flex gap-4 md:gap-8 leading-tight w-full pl-5 md:pl-20">
-                        <h2 className="font-tech sticky top-[calc(50%-0.5lh)] text-4xl md:text-7xl text-black m-0 inline-block h-fit">
+                        <h2 className="font-tech sticky top-[calc(50%-0.5lh)] text-4xl md:text-7xl text-black m-0 inline-block h-fit pb-3">
                             <span aria-hidden="true">I can</span>
                             <span className="sr-only">I can deploy things.</span>
                         </h2>
