@@ -49,7 +49,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       applyTheme(next);
       setTimeout(() => {
         document.documentElement.classList.remove("theme-transitioning");
-      }, 1500);
+      }, 1600);
       return;
     }
 
@@ -90,7 +90,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
           clipPath: clipPath,
         },
         {
-          duration: 1000,
+          duration: 1500,
           delay: 50,
           fill: "both",
           easing: "cubic-bezier(0.25, 1, 0.5, 1)",
