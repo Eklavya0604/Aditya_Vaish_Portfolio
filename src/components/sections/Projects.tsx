@@ -47,7 +47,7 @@ export default function Projects() {
             </div>
           </div>
 
-          <div className="font-dot text-xs text-foreground/50">
+          <div className="font-dot text-xs text-foreground/60">
             INDEX [03]
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function Projects() {
             >
               {/* Top Meta */}
               <div className="flex justify-between items-start mb-12">
-                <span className="font-mono text-[10px] text-foreground/50 tracking-widest">{project.id}</span>
+                <span className="font-mono text-[10px] text-foreground/60 tracking-widest">{project.id}</span>
                 <span className="font-mono text-[10px] text-foreground/60 uppercase border border-foreground/20 px-2 py-1 group-hover:border-signal-red group-hover:text-signal-red transition-colors duration-500">
                   {project.type}
                 </span>

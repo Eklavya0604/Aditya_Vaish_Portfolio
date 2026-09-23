@@ -68,7 +68,7 @@ export default function Experience() {
                     {exp.company}
                   </h3>
                   {exp.location && (
-                    <div className="font-mono text-[10px] text-foreground/40 tracking-wider uppercase mt-1">
+                    <div className="font-mono text-[10px] text-foreground/60 tracking-wider uppercase mt-1">
                       {exp.location}
                     </div>
                   )}
@@ -81,7 +81,7 @@ export default function Experience() {
                       {exp.role}
                     </h4>
                     {exp.subRole && (
-                      <div className="font-sans text-sm text-foreground/50 mt-1">
+                      <div className="font-sans text-sm text-foreground/60 mt-1">
                         {exp.subRole}
                       </div>
                     )}
@@ -90,7 +90,7 @@ export default function Experience() {
                   {/* Skills tags */}
                   <div className="flex flex-wrap gap-2 mt-auto">
                     {exp.skills.map(skill => (
-                      <span key={skill} className="font-mono text-[9px] uppercase tracking-widest px-2 py-1 border border-foreground/10 text-foreground/50 group-hover:border-signal-red/50 group-hover:text-signal-red transition-colors duration-500">
+                      <span key={skill} className="font-mono text-[9px] uppercase tracking-widest px-2 py-1 border border-foreground/10 text-foreground/60 group-hover:border-signal-red/50 group-hover:text-signal-red transition-colors duration-500">
                         {skill}
                       </span>
                     ))}

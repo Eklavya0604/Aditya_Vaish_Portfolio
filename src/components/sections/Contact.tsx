@@ -158,7 +158,7 @@ export default function Contact() {
                   id="name"
                   name="name"
                   maxLength={100}
-                  className={`w-full bg-transparent border-b pb-2 font-sans text-base focus:outline-none transition-colors duration-300 placeholder:text-foreground/30 ${errors.name ? "border-signal-red text-signal-red" : "border-foreground/20 text-foreground focus:border-signal-red"}`}
+                  className={`w-full bg-transparent border-b pb-2 font-sans text-base focus:outline-none transition-colors duration-300 placeholder:text-foreground/60 ${errors.name ? "border-signal-red text-signal-red" : "border-foreground/20 text-foreground focus:border-signal-red"}`}
                   placeholder="Aditya"
                   onFocus={() => setErrors(prev => ({...prev, name: ""}))}
                 />
@@ -173,7 +173,7 @@ export default function Contact() {
                   id="email"
                   name="email"
                   maxLength={100}
-                  className={`w-full bg-transparent border-b pb-2 font-sans text-base focus:outline-none transition-colors duration-300 placeholder:text-foreground/30 ${errors.email ? "border-signal-red text-signal-red" : "border-foreground/20 text-foreground focus:border-signal-red"}`}
+                  className={`w-full bg-transparent border-b pb-2 font-sans text-base focus:outline-none transition-colors duration-300 placeholder:text-foreground/60 ${errors.email ? "border-signal-red text-signal-red" : "border-foreground/20 text-foreground focus:border-signal-red"}`}
                   placeholder="aditya@example.com"
                   onFocus={() => setErrors(prev => ({...prev, email: ""}))}
                 />
@@ -193,7 +193,7 @@ export default function Contact() {
                   minLength={10}
                   maxLength={5000}
                   rows={4}
-                  className={`w-full bg-transparent border-b pb-2 font-sans text-base focus:outline-none transition-colors duration-300 placeholder:text-foreground/30 resize-none ${errors.message ? "border-signal-red text-signal-red" : "border-foreground/20 text-foreground focus:border-signal-red"}`}
+                  className={`w-full bg-transparent border-b pb-2 font-sans text-base focus:outline-none transition-colors duration-300 placeholder:text-foreground/60 resize-none ${errors.message ? "border-signal-red text-signal-red" : "border-foreground/20 text-foreground focus:border-signal-red"}`}
                   placeholder="Transmission contents..."
                   onFocus={() => setErrors(prev => ({...prev, message: ""}))}
                 />
