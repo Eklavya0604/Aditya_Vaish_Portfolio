@@ -64,8 +64,21 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       // where it can return 0,0 on the first click after reload due to GSAP transforms.
       if (x === 0 && y === 0) {
         const rect = target.getBoundingClientRect();
-        x = rect.left + rect.width / 2;
-        y = rect.top + rect.height / 2;
+        
+        if (rect.width > 0 && rect.height > 0) {
+          x = rect.left + rect.width / 2;
+          y = rect.top + rect.height / 2;
+        } else {
+          // Ultimate fallback for Android Chrome where even the bounding box completely fails
+          if (target.classList.contains("spectacles-icon-hero")) {
+            x = window.innerWidth / 2;
+            y = window.innerHeight / 2;
+          } else {
+            // Floating icon approximation
+            x = window.innerWidth - 40;
+            y = 100;
+          }
+        }
       }
       
       // The center spectacles visually appear slightly lower than their mathematical center
