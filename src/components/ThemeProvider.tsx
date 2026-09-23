@@ -58,14 +58,19 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     if (e.currentTarget) {
       const target = e.currentTarget as HTMLElement;
-      // Use bounding rect to ensure perfect alignment with CSS clip-path coordinate system
-      // (clientY can be offset by mobile browser URL bars)
-      const rect = target.getBoundingClientRect();
-      x = rect.left + rect.width / 2;
-      y = rect.top + rect.height / 2;
+      
+      // Only fallback to bounding box for keyboard events (x=0, y=0)
+      // We avoid getBoundingClientRect() on touch/mouse because Chrome mobile has a bug
+      // where it can return 0,0 on the first click after reload due to GSAP transforms.
+      if (x === 0 && y === 0) {
+        const rect = target.getBoundingClientRect();
+        x = rect.left + rect.width / 2;
+        y = rect.top + rect.height / 2;
+      }
       
       // The center spectacles visually appear slightly lower than their mathematical center
-      // on production mobile devices. Nudge the epicenter down to perfectly align it.
+      // on production mobile devices due to the viewBox and browser URL bars.
+      // Nudge the epicenter down to perfectly align it with the visual glasses.
       if (target.classList.contains("spectacles-icon-hero")) {
         const isMobile = window.innerWidth < 768;
         y += isMobile ? 30 : 15;
