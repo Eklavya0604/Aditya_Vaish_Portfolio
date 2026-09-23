@@ -56,8 +56,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     let x = e.clientX;
     let y = e.clientY;
 
-    // Use the button's actual center for a perfect epicenter, especially on mobile touch
-    if (e.currentTarget) {
+    // Use exact pointer coordinates for mouse/touch so the epicenter is exactly where the user tapped.
+    // Fall back to the mathematical bounding box center ONLY for keyboard interactions (where x and y are 0).
+    if (x === 0 && y === 0 && e.currentTarget) {
       const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
       x = rect.left + rect.width / 2;
       y = rect.top + rect.height / 2;
