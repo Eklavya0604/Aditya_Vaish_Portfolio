@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useRef } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import HangingLamp from "../ui/Hanginglamp";
 import { Turnstile } from "@marsidev/react-turnstile";
@@ -61,13 +61,53 @@ export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
 
   const [state, formAction] = useActionState(sendEmailAction, initialState);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   // Reset form on success
   useEffect(() => {
     if (state.success) {
       formRef.current?.reset();
+      setErrors({});
     }
   }, [state.timestamp, state.success]);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const newErrors: Record<string, string> = {};
+    let hasError = false;
+
+    const name = formData.get("name") as string;
+    if (!name) {
+      newErrors.name = "Please fill out this field.";
+      hasError = true;
+    }
+
+    const email = formData.get("email") as string;
+    if (!email) {
+      newErrors.email = "Please fill out this field.";
+      hasError = true;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = "Please enter a valid email address.";
+      hasError = true;
+    }
+
+    const message = formData.get("message") as string;
+    if (!message) {
+      newErrors.message = "Please fill out this field.";
+      hasError = true;
+    } else if (message.length < 10) {
+      newErrors.message = "Please lengthen this text to 10 characters or more.";
+      hasError = true;
+    }
+
+    if (hasError) {
+      e.preventDefault();
+      setErrors(newErrors);
+    } else {
+      setErrors({});
+    }
+  };
 
   return (
     <section
@@ -107,46 +147,55 @@ export default function Contact() {
               Looking for a technical partner or just want to discuss an idea? Send a transmission below.
             </p>
 
-            <form ref={formRef} action={formAction} className="contact-fade flex flex-col gap-6 w-full max-w-xl">
-              <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="font-mono text-[10px] text-foreground/60 tracking-widest uppercase">Name // IDENT</label>
+            <form ref={formRef} action={formAction} onSubmit={handleSubmit} noValidate className="contact-fade flex flex-col gap-6 w-full max-w-xl">
+              <div className="flex flex-col gap-2 relative">
+                <label htmlFor="name" className="font-mono text-[10px] text-foreground/60 tracking-widest uppercase flex justify-between">
+                  <span>Name // IDENT</span>
+                  {errors.name && <span className="text-signal-red font-dot tracking-widest">{errors.name}</span>}
+                </label>
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  required
                   maxLength={100}
-                  className="w-full bg-transparent border-b border-foreground/20 pb-2 font-sans text-base text-foreground focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-foreground/30"
+                  className={`w-full bg-transparent border-b pb-2 font-sans text-base focus:outline-none transition-colors duration-300 placeholder:text-foreground/30 ${errors.name ? "border-signal-red text-signal-red" : "border-foreground/20 text-foreground focus:border-signal-red"}`}
                   placeholder="Aditya"
+                  onFocus={() => setErrors(prev => ({...prev, name: ""}))}
                 />
               </div>
-              <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="font-mono text-[10px] text-foreground/60 tracking-widest uppercase">Email // ROUTE</label>
+              <div className="flex flex-col gap-2 relative">
+                <label htmlFor="email" className="font-mono text-[10px] text-foreground/60 tracking-widest uppercase flex justify-between">
+                  <span>Email // ROUTE</span>
+                  {errors.email && <span className="text-signal-red font-dot tracking-widest">{errors.email}</span>}
+                </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  required
                   maxLength={100}
-                  className="w-full bg-transparent border-b border-foreground/20 pb-2 font-sans text-base text-foreground focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-foreground/30"
+                  className={`w-full bg-transparent border-b pb-2 font-sans text-base focus:outline-none transition-colors duration-300 placeholder:text-foreground/30 ${errors.email ? "border-signal-red text-signal-red" : "border-foreground/20 text-foreground focus:border-signal-red"}`}
                   placeholder="aditya@example.com"
+                  onFocus={() => setErrors(prev => ({...prev, email: ""}))}
                 />
               </div>
 
               {/* Honeypot field (hidden from visual users but bots might fill it) */}
               <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
-              <div className="flex flex-col gap-2">
-                <label htmlFor="message" className="font-mono text-[10px] text-foreground/60 tracking-widest uppercase">Message // DATA</label>
+              <div className="flex flex-col gap-2 relative">
+                <label htmlFor="message" className="font-mono text-[10px] text-foreground/60 tracking-widest uppercase flex justify-between">
+                  <span>Message // DATA</span>
+                  {errors.message && <span className="text-signal-red font-dot tracking-widest">{errors.message}</span>}
+                </label>
                 <textarea
                   id="message"
                   name="message"
-                  required
                   minLength={10}
                   maxLength={5000}
                   rows={4}
-                  className="w-full bg-transparent border-b border-foreground/20 pb-2 font-sans text-base text-foreground focus:outline-none focus:border-signal-red transition-colors duration-300 placeholder:text-foreground/30 resize-none"
+                  className={`w-full bg-transparent border-b pb-2 font-sans text-base focus:outline-none transition-colors duration-300 placeholder:text-foreground/30 resize-none ${errors.message ? "border-signal-red text-signal-red" : "border-foreground/20 text-foreground focus:border-signal-red"}`}
                   placeholder="Transmission contents..."
+                  onFocus={() => setErrors(prev => ({...prev, message: ""}))}
                 />
               </div>
 
