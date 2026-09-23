@@ -5,6 +5,7 @@ import Loader from "@/components/ui/Loader";
 import '@/components/sections/Skills.css'
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import CustomCursor from "@/components/ui/CustomCursor";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -92,7 +93,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans selection:bg-signal-red selection:text-white">
         <ThemeProvider>
           <Loader />
-
+          <CustomCursor />
           <FloatingThemeToggle />
           {children}
         </ThemeProvider>

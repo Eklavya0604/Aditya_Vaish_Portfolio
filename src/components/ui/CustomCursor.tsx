@@ -101,9 +101,6 @@ export default function CustomCursor() {
         id="custom-cursor"
         className="fixed top-0 left-0 w-8 h-8 rounded-full border border-muted pointer-events-none z-[9999] transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center mix-blend-difference"
       >
-        <svg width="32" height="32" viewBox="0 0 32 32" className="absolute animate-[spin_10s_linear_infinite] opacity-30">
-          <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="2 4" />
-        </svg>
       </div>
       <div
         id="custom-cursor-dot"
