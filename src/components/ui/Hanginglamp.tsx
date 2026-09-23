@@ -50,7 +50,7 @@ export default function HangingLamp({
     containerRef,
     scale = 1,
     glowColor = "#D71921",
-    shadeColor = "#161616",
+    shadeColor = "#282828ff",
     flicker = true,
     draggable = true,
 }: HangingLampProps) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import SpectaclesIcon from "@/components/ui/SpectaclesIcon";
 import { useTheme } from "@/components/ThemeProvider";
@@ -47,6 +47,19 @@ export default function HeroV2() {
   const { theme, toggleTheme } = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const threshold = window.innerWidth < 768 ? 60 : 120;
+      setScrolled(window.scrollY > threshold);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -60,7 +73,7 @@ export default function HeroV2() {
       );
 
       tl.fromTo(
-        ".spectacles-icon",
+        ".spectacles-icon-hero",
         { scale: 0.8, opacity: 0, rotation: -5 },
         { scale: 1, opacity: 1, rotation: 0, duration: 1.5, ease: "elastic.out(1, 0.5)" },
         "-=0.5"
@@ -109,14 +122,19 @@ export default function HeroV2() {
         {/* Main Typography Column */}
         <div className="flex flex-col items-center justify-center w-full max-w-5xl relative z-20 text-center">
 
-          {/* Spectacles SVG positioned above the title in the center */}
-          <button 
-            onClick={toggleTheme}
-            className="spectacles-icon group/spec flex w-full max-w-[120px] md:max-w-[180px] lg:max-w-[220px] z-10 cursor-pointer mb-2 transition-transform hover:scale-105 active:scale-95"
-            aria-label="Toggle Theme"
+          <div 
+            className={`spectacles-scroll-wrapper flex w-full max-w-[120px] md:max-w-[180px] lg:max-w-[220px] z-10 mb-2 justify-center transition-all duration-200 ease-out ${
+              scrolled ? "opacity-0 blur-md pointer-events-none" : "opacity-100 blur-none pointer-events-auto"
+            }`}
           >
-            <SpectaclesIcon className="w-full h-auto text-signal-red drop-shadow-sm opacity-90 group-hover/spec:opacity-100 mx-auto transition-opacity duration-300" />
-          </button>
+            <button 
+              onClick={toggleTheme}
+              className="spectacles-icon-hero group/spec flex w-full cursor-pointer transition-transform hover:scale-105 active:scale-95"
+              aria-label="Toggle Theme"
+            >
+              <SpectaclesIcon className="w-full h-auto text-signal-red drop-shadow-sm opacity-90 group-hover/spec:opacity-100 mx-auto transition-opacity duration-300" />
+            </button>
+          </div>
 
           <h1 className="hero-stagger font-tech text-[clamp(3.2rem,11vw,9rem)] leading-[0.95] font-bold tracking-[0.02em] uppercase mb-4 md:mb-6 text-foreground text-center whitespace-nowrap">
             Aditya Vaish
