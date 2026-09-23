@@ -165,7 +165,7 @@ export default function HeroV2() {
                     {social.icon}
                   </svg>
                   <div className="flex flex-col items-start text-left">
-                    <div className="flex items-center gap-1 font-tech tracking-widest text-[11px] md:text-sm font-bold text-foreground group-hover:text-signal-red transition-colors duration-300">
+                    <div className="flex items-center gap-1 font-tech tracking-widest text-[11px] md:text-sm font-normal text-foreground group-hover:text-signal-red transition-colors duration-300">
                       {social.name} <span className="text-signal-red">↗</span>
                     </div>
                     <div className="font-mono text-[8px] md:text-[9px] text-muted tracking-widest leading-tight mt-0.5 uppercase">
