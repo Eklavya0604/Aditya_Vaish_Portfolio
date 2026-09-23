@@ -63,11 +63,14 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       y = rect.top + rect.height / 2;
     }
 
-    // Multiply by 1.5 to guarantee coverage on mobile dynamic viewports (dvh)
-    const endRadius = Math.hypot(
+    // Calculate exact distance to farthest corner
+    const maxRadius = Math.hypot(
       Math.max(x, innerWidth - x),
       Math.max(y, innerHeight - y)
-    ) * 1.5;
+    );
+    
+    // Use a fixed 100px buffer instead of a 1.5x multiplier to prevent excessively huge radii
+    const endRadius = maxRadius + 100;
 
     if (transitionRef.current) {
       transitionRef.current.skipTransition();
@@ -90,10 +93,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
           clipPath: clipPath,
         },
         {
-          duration: 2000,
+          duration: 2500, // Slightly longer duration for smoothness
           delay: 50,
           fill: "both",
-          easing: "cubic-bezier(0.25, 1, 0.5, 1)",
+          // Use a smoother ease-in-out instead of an aggressive ease-out
+          easing: "cubic-bezier(0.4, 0, 0.2, 1)",
           pseudoElement: "::view-transition-new(root)"
         }
       );
