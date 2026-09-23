@@ -10,8 +10,16 @@ export default function FloatingThemeToggle() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const threshold = window.innerWidth < 768 ? 60 : 120;
-      setScrolled(window.scrollY > threshold);
+      const y = window.scrollY;
+      const isMobile = window.innerWidth < 768;
+      const downThreshold = isMobile ? 150 : 250;
+      const upThreshold = isMobile ? 60 : 120;
+      
+      setScrolled(prev => {
+        if (y > downThreshold) return true;
+        if (y < upThreshold) return false;
+        return prev;
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });

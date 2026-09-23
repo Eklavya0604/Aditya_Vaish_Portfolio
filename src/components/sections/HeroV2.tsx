@@ -51,8 +51,16 @@ export default function HeroV2() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const threshold = window.innerWidth < 768 ? 60 : 120;
-      setScrolled(window.scrollY > threshold);
+      const y = window.scrollY;
+      const isMobile = window.innerWidth < 768;
+      const downThreshold = isMobile ? 150 : 250;
+      const upThreshold = isMobile ? 60 : 120;
+      
+      setScrolled(prev => {
+        if (y > downThreshold) return true;
+        if (y < upThreshold) return false;
+        return prev;
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -123,7 +131,7 @@ export default function HeroV2() {
         <div className="flex flex-col items-center justify-center w-full max-w-5xl relative z-20 text-center">
 
           <div 
-            className={`spectacles-scroll-wrapper flex w-full max-w-[120px] md:max-w-[180px] lg:max-w-[220px] z-10 mb-2 justify-center transition-all duration-200 ease-out ${
+            className={`spectacles-scroll-wrapper flex w-full max-w-[120px] md:max-w-[180px] lg:max-w-[220px] z-10 mb-2 justify-center transition-all duration-500 ease-out ${
               scrolled ? "opacity-0 blur-md pointer-events-none" : "opacity-100 blur-none pointer-events-auto"
             }`}
           >
@@ -136,7 +144,7 @@ export default function HeroV2() {
             </button>
           </div>
 
-          <h1 className="hero-stagger font-tech text-[clamp(3.2rem,11vw,9rem)] leading-[0.95] font-bold tracking-[0.02em] uppercase mb-4 md:mb-6 text-foreground text-center whitespace-nowrap">
+          <h1 id="hero-name-text" className="hero-stagger font-tech text-[clamp(3.2rem,11vw,9rem)] leading-[0.95] font-bold tracking-[0.02em] uppercase mb-4 md:mb-6 text-foreground text-center whitespace-nowrap">
             Aditya Vaish
           </h1>
 
