@@ -56,12 +56,20 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     let x = e.clientX;
     let y = e.clientY;
 
-    // Use exact pointer coordinates for mouse/touch so the epicenter is exactly where the user tapped.
-    // Fall back to the mathematical bounding box center ONLY for keyboard interactions (where x and y are 0).
-    if (x === 0 && y === 0 && e.currentTarget) {
-      const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+    if (e.currentTarget) {
+      const target = e.currentTarget as HTMLElement;
+      // Use bounding rect to ensure perfect alignment with CSS clip-path coordinate system
+      // (clientY can be offset by mobile browser URL bars)
+      const rect = target.getBoundingClientRect();
       x = rect.left + rect.width / 2;
       y = rect.top + rect.height / 2;
+      
+      // The center spectacles visually appear slightly lower than their mathematical center
+      // on production mobile devices. Nudge the epicenter down to perfectly align it.
+      if (target.classList.contains("spectacles-icon-hero")) {
+        const isMobile = window.innerWidth < 768;
+        y += isMobile ? 25 : 15;
+      }
     }
 
     // Calculate exact distance to farthest corner
