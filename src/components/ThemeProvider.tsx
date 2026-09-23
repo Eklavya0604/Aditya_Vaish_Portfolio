@@ -68,7 +68,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       // on production mobile devices. Nudge the epicenter down to perfectly align it.
       if (target.classList.contains("spectacles-icon-hero")) {
         const isMobile = window.innerWidth < 768;
-        y += isMobile ? 25 : 15;
+        y += isMobile ? 30 : 15;
       }
     }
 
