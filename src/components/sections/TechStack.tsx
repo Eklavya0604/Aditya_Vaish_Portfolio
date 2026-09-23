@@ -40,32 +40,38 @@ export default function TechStack() {
     let animationFrameId: number;
     let lastActiveIndex: number | null = null;
 
-    const checkCenter = () => {
-      const centerX = window.innerWidth / 2;
-      let closestIdx: number | null = null;
-      let minDistance = Infinity;
+    let lastCheckTime = 0;
 
-      itemsRef.current.forEach((el, idx) => {
-        if (!el) return;
-        const rect = el.getBoundingClientRect();
-        const elCenterX = rect.left + rect.width / 2;
-        const distance = Math.abs(centerX - elCenterX);
+    const checkCenter = (time: number) => {
+      // Throttle to run every ~150ms instead of every 16ms to save massive CPU/Layout thrashing
+      if (time - lastCheckTime > 150) {
+        lastCheckTime = time;
+        const centerX = window.innerWidth / 2;
+        let closestIdx: number | null = null;
+        let minDistance = Infinity;
 
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestIdx = idx;
+        itemsRef.current.forEach((el, idx) => {
+          if (!el) return;
+          const rect = el.getBoundingClientRect();
+          const elCenterX = rect.left + rect.width / 2;
+          const distance = Math.abs(centerX - elCenterX);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestIdx = idx;
+          }
+        });
+
+        // Only highlight if it's within a reasonable distance from the center
+        if (minDistance > 200) {
+          closestIdx = null;
         }
-      });
 
-      // Only highlight if it's within a reasonable distance from the center
-      if (minDistance > 200) {
-        closestIdx = null;
-      }
-
-      // Update React state only if the active index actually changes
-      if (closestIdx !== lastActiveIndex) {
-        lastActiveIndex = closestIdx;
-        setActiveIndex(closestIdx);
+        // Update React state only if the active index actually changes
+        if (closestIdx !== lastActiveIndex) {
+          lastActiveIndex = closestIdx;
+          setActiveIndex(closestIdx);
+        }
       }
 
       animationFrameId = requestAnimationFrame(checkCenter);

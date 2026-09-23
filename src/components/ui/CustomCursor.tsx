@@ -25,20 +25,18 @@ export default function CustomCursor() {
     if (!cursor || !cursorDot) return;
 
     // Fast follow for the inner dot
+    const xToDot = gsap.quickTo(cursorDot, "x", { duration: 0.1, ease: "power2.out" });
+    const yToDot = gsap.quickTo(cursorDot, "y", { duration: 0.1, ease: "power2.out" });
+    
+    // Slower follow for the outer structural ring
+    const xTo = gsap.quickTo(cursor, "x", { duration: 0.5, ease: "power3.out" });
+    const yTo = gsap.quickTo(cursor, "y", { duration: 0.5, ease: "power3.out" });
+
     const moveDot = (e: MouseEvent) => {
-      gsap.to(cursorDot, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.1,
-        ease: "power2.out",
-      });
-      // Slower follow for the outer structural ring
-      gsap.to(cursor, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.5,
-        ease: "power3.out",
-      });
+      xToDot(e.clientX);
+      yToDot(e.clientY);
+      xTo(e.clientX);
+      yTo(e.clientY);
     };
 
     const handleHover = () => {
