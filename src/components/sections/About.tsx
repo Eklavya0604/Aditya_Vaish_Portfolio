@@ -349,6 +349,7 @@ export default function About() {
               src="/assets/Profile_picture.png"
               alt="Aditya Kumar Vaish - Backend Engineer Profile Picture"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 40vw, 30vw"
               className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
             />
             {/* Overlay grid/technical markers */}

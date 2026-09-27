@@ -12,10 +12,11 @@ const projects = [
   },
   {
     id: "02",
-    title: "Business Connect Pro",
+    title: "Vypaar Manch",
     type: "FULL_STACK",
     description: "Local service marketplace platform. Features end-to-end service tracking, review modules, and WhatsApp API automation.",
-    link: "https://github.com/Eklavya0604/business-connect-pro",
+    link: "https://github.com/Eklavya0604/Vypaar_Manch",
+    liveLink: "https://vypaarmanch.adityavaish.dev/",
   },
   {
     id: "03",
@@ -83,21 +84,34 @@ export default function Projects() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 font-tech text-xs tracking-widest uppercase text-foreground/60 group-hover:text-signal-red transition-colors duration-300"
                 >
-                  <span className="w-6 h-[1px] bg-foreground/60 group-hover:bg-signal-red group-hover:w-12 transition-all duration-500" />
                   View Node
                 </a>
 
-                {/* @ts-ignore */}
-                {project.paperLink && (
-                  <a
-                    href={project.paperLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center font-mono text-[9px] tracking-widest uppercase text-signal-red border border-signal-red/30 hover:bg-signal-red hover:text-white px-2 py-1 transition-all duration-300"
-                  >
-                    Published
-                  </a>
-                )}
+                <div className="flex items-center gap-2">
+                  {/* @ts-ignore */}
+                  {project.liveLink && (
+                    <a
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center font-mono text-[9px] tracking-widest uppercase text-signal-red border border-signal-red/30 hover:bg-signal-red hover:text-white px-2 py-1 transition-all duration-300"
+                    >
+                      Live
+                    </a>
+                  )}
+
+                  {/* @ts-ignore */}
+                  {project.paperLink && (
+                    <a
+                      href={project.paperLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center font-mono text-[9px] tracking-widest uppercase text-signal-red border border-signal-red/30 hover:bg-signal-red hover:text-white px-2 py-1 transition-all duration-300"
+                    >
+                      Published
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           ))}
