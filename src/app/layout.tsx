@@ -34,6 +34,11 @@ export const metadata: Metadata = {
     template: "%s | Aditya Kumar Vaish",
   },
   description,
+  verification: {
+    other: {
+      "msvalidate.01": "77CEA95ABE6459A4ACD55C56FD9ACFAD",
+    },
+  },
   keywords: [
     "Aditya Kumar Vaish",
     "Aditya Vaish",
