@@ -43,3 +43,7 @@ next-env.d.ts
 #md file
 AGENTS.md  
 CLAUDE.md
+
+# local agent tooling
+/.opencode
+/opencode.json

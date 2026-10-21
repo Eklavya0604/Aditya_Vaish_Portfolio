@@ -84,6 +84,26 @@ body {
   border-radius: 0 !important;
 }
 
+/* Visible keyboard focus (the custom cursor hides the mouse cursor) */
+:focus-visible {
+  outline: 2px solid var(--color-signal-red);
+  outline-offset: 2px;
+}
+
+/* Respect the OS reduced-motion setting */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* shortcut: CSS only — GSAP timelines still run. Gate them with
+     gsap.matchMedia() if motion-sensitive users report issues. */
+}
+
 /* Custom selection */
 ::selection {
   background: var(--color-signal-red);

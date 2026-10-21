@@ -29,7 +29,8 @@ const contactSchema = z.object({
     email: z.string().email("Invalid email address").max(100, "Email is too long"),
     message: z.string().min(10, "Message must be at least 10 characters").max(5000, "Message is too long"),
     website: z.string().max(0, "Honeypot triggered").optional(), // Honeypot must be empty
-    turnstileToken: z.string().min(1, "Turnstile token is missing"),
+    // Required only when TURNSTILE_SECRET_KEY is configured; see step 3.
+    turnstileToken: z.string().optional(),
 });
 
 export type ActionState = {
@@ -49,9 +50,8 @@ export async function sendEmailAction(
             name: formData.get("name") as string,
             email: formData.get("email") as string,
             message: formData.get("message") as string,
-            website: formData.get("website") as string, // Honeypot
-            // Fallback to "bypass-for-testing" if Turnstile is disabled
-            turnstileToken: (formData.get("cf-turnstile-response") || "bypass-for-testing") as string,
+            website: formData.get("website")?.toString() ?? "", // Honeypot
+            turnstileToken: formData.get("cf-turnstile-response")?.toString() ?? "",
         };
 
         const validatedData = contactSchema.safeParse(rawData);
@@ -84,13 +84,25 @@ export async function sendEmailAction(
         }
 
         // 3. Turnstile Verification
-        if (process.env.TURNSTILE_SECRET_KEY && turnstileToken !== "bypass-for-testing") {
+        // If a secret is configured, a real token is mandatory — no bypass path.
+        if (process.env.TURNSTILE_SECRET_KEY) {
+            if (!turnstileToken) {
+                return {
+                    success: false,
+                    error: "Bot verification failed. Please try again.",
+                    timestamp: Date.now(),
+                };
+            }
+
             const turnstileResponse = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
                 },
-                body: `secret=${process.env.TURNSTILE_SECRET_KEY}&response=${turnstileToken}`,
+                body: new URLSearchParams({
+                    secret: process.env.TURNSTILE_SECRET_KEY,
+                    response: turnstileToken,
+                }).toString(),
             });
 
             const turnstileResult = await turnstileResponse.json();

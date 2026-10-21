@@ -19,16 +19,20 @@ const spaceMono = Space_Mono({
   weight: ["400", "700"],
 });
 
+const description =
+  "Aditya Kumar Vaish is a software engineer specializing in backend development with Java, Spring Boot, React, and distributed systems.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://adityavaish.dev"),
   alternates: {
     canonical: '/',
   },
+  applicationName: "Aditya Kumar Vaish Portfolio",
   title: {
     default: "Aditya Kumar Vaish | Backend Engineer",
     template: "%s | Aditya Kumar Vaish",
   },
-  description: "Software Engineer specializing in Backend Development, Java, Spring Boot, and Distributed Systems.",
+  description,
   keywords: [
     "Aditya Kumar Vaish",
     "Aditya Vaish",
@@ -53,22 +57,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://adityavaish.dev",
     title: "Aditya Kumar Vaish | Backend Engineer",
-    description: "Software Engineer specializing in Backend Development, Java, Spring Boot, and Distributed Systems.",
+    description,
     siteName: "Aditya Kumar Vaish Portfolio",
-    images: [
-      {
-        url: "/assets/Profile_picture.png",
-        width: 800,
-        height: 1000,
-        alt: "Aditya Kumar Vaish - Backend Engineer",
-      }
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Aditya Kumar Vaish | Backend Engineer",
-    description: "Software Engineer specializing in Backend Development, Java, Spring Boot, and Distributed Systems.",
-    images: ["/assets/Profile_picture.png"],
+    description,
   },
   robots: {
     index: true,
