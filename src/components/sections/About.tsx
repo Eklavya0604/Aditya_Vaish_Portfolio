@@ -347,7 +347,7 @@ export default function About() {
           <div className="about-fade relative w-full md:w-[40%] lg:w-[30%] aspect-[4/5] border border-foreground/20 flex items-center justify-center overflow-hidden group">
             <Image
               src="/assets/Profile_picture.png"
-              alt="Aditya Kumar Vaish - Backend Engineer Profile Picture"
+              alt="Aditya Kumar Vaish - Software Engineer Profile Picture"
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 40vw, 30vw"
               className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"

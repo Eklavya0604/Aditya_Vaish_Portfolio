@@ -5,6 +5,7 @@
   src: url('/fonts/NType82-Regular/NType82-Regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -12,6 +13,7 @@
   src: url('/fonts/DotMatrix/DOTMATRX.TTF') format('truetype');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -19,6 +21,7 @@
   src: url('/fonts/DotMatrix/DotMatrix_TR.TTF') format('truetype');
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 :root {

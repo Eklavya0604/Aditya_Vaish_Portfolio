@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { preload } from "react-dom";
 import { Space_Grotesk, Space_Mono } from "next/font/google";
 import FloatingThemeToggle from "@/components/ui/FloatingThemeToggle";
 import Loader from "@/components/ui/Loader";
@@ -23,13 +24,13 @@ const description =
   "Aditya Kumar Vaish is a software engineer specializing in backend development with Java, Spring Boot, React, and distributed systems.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://adityavaish.dev"),
+  metadataBase: new URL("https://www.adityavaish.dev"),
   alternates: {
     canonical: '/',
   },
   applicationName: "Aditya Kumar Vaish Portfolio",
   title: {
-    default: "Aditya Kumar Vaish | Backend Engineer",
+    default: "Aditya Kumar Vaish | Software Engineer",
     template: "%s | Aditya Kumar Vaish",
   },
   description,
@@ -55,14 +56,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://adityavaish.dev",
-    title: "Aditya Kumar Vaish | Backend Engineer",
+    url: "https://www.adityavaish.dev",
+    title: "Aditya Kumar Vaish | Software Engineer",
     description,
     siteName: "Aditya Kumar Vaish Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aditya Kumar Vaish | Backend Engineer",
+    title: "Aditya Kumar Vaish | Software Engineer",
     description,
   },
   robots: {
@@ -83,6 +84,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // The LCP element is the NType82 headline; start the fetch before CSS parses.
+  preload("/fonts/NType82-Regular/NType82-Regular.otf", {
+    as: "font",
+    type: "font/otf",
+    crossOrigin: "anonymous",
+  });
+
   return (
     <html lang="en" className={`h-full antialiased ${spaceGrotesk.variable} ${spaceMono.variable}`}>
       <body className="min-h-full flex flex-col font-sans selection:bg-signal-red selection:text-white">

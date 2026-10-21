@@ -7,7 +7,7 @@ import Projects from "@/components/sections/Projects";
 import Experience from "@/components/sections/Experience";
 import Contact from "@/components/sections/Contact";
 
-const SITE = "https://adityavaish.dev";
+const SITE = "https://www.adityavaish.dev";
 
 const jsonLd = [
   {
@@ -25,7 +25,7 @@ const jsonLd = [
     "@id": `${SITE}/#person`,
     name: "Aditya Kumar Vaish",
     url: SITE,
-    jobTitle: "Backend Engineer",
+    jobTitle: "Software Engineer",
     description:
       "Software Engineer specializing in Backend Development, Java, Spring Boot, and Distributed Systems.",
     image: {

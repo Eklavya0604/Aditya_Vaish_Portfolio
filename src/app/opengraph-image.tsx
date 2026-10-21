@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export const alt = "Aditya Kumar Vaish — Backend Engineer";
+export const alt = "Aditya Kumar Vaish — Software Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -38,7 +38,7 @@ export default async function Image() {
             Aditya Kumar Vaish
           </div>
           <div style={{ fontSize: 36, color: "#D71921", marginTop: 24 }}>
-            Backend Engineer
+            Software Engineer
           </div>
         </div>
 
