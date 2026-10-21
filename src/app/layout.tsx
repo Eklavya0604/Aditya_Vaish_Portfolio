@@ -21,7 +21,7 @@ const spaceMono = Space_Mono({
 });
 
 const description =
-  "Aditya Kumar Vaish is a software engineer specializing in backend development with Java, Spring Boot, React, and distributed systems.";
+  "Software engineer in Delhi NCR building backend systems with Java, Spring Boot, React, and distributed systems. Open to freelance and contract work.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.adityavaish.dev"),
@@ -30,16 +30,21 @@ export const metadata: Metadata = {
   },
   applicationName: "Aditya Kumar Vaish Portfolio",
   title: {
-    default: "Aditya Kumar Vaish | Software Engineer",
+    default: "Aditya Kumar Vaish | Software Engineer in Delhi NCR",
     template: "%s | Aditya Kumar Vaish",
   },
   description,
   keywords: [
     "Aditya Kumar Vaish",
     "Aditya Vaish",
-    "Aditya",
-    "Vaish",
+    "Software Engineer Delhi NCR",
+    "Software Engineer Ghaziabad",
+    "Freelance Backend Developer",
+    "Freelance Java Developer",
+    "Java Developer Delhi NCR",
+    "Spring Boot Developer",
     "Backend Engineer",
+    "Remote Backend Engineer India",
     "Software Developer",
     "Java Developer",
     "Spring Boot",
@@ -57,13 +62,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://www.adityavaish.dev",
-    title: "Aditya Kumar Vaish | Software Engineer",
+    title: "Aditya Kumar Vaish | Software Engineer in Delhi NCR",
     description,
     siteName: "Aditya Kumar Vaish Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aditya Kumar Vaish | Software Engineer",
+    title: "Aditya Kumar Vaish | Software Engineer in Delhi NCR",
     description,
   },
   robots: {

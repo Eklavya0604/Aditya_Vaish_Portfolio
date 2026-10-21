@@ -27,7 +27,7 @@ const jsonLd = [
     url: SITE,
     jobTitle: "Software Engineer",
     description:
-      "Software Engineer specializing in Backend Development, Java, Spring Boot, and Distributed Systems.",
+      "Software engineer in Delhi NCR building backend systems with Java, Spring Boot, React, and distributed systems.",
     image: {
       "@type": "ImageObject",
       url: `${SITE}/assets/Profile_picture.png`,
@@ -39,9 +39,31 @@ const jsonLd = [
       name: "ABES Engineering College",
       location: "Ghaziabad, India",
     },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Ghaziabad",
+      addressRegion: "Uttar Pradesh",
+      addressCountry: "IN",
+    },
     homeLocation: {
       "@type": "Place",
       name: "Gorakhpur, India",
+    },
+    areaServed: [
+      { "@type": "City", "name": "Delhi NCR" },
+      { "@type": "Country", "name": "India" },
+    ],
+    makesOffer: {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Freelance backend and full-stack development",
+        serviceType: "Software development",
+        areaServed: [
+          { "@type": "City", "name": "Delhi NCR" },
+          { "@type": "Country", "name": "India" },
+        ],
+      },
     },
     worksFor: {
       "@type": "Organization",
