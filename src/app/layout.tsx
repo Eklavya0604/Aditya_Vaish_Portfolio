@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { preload } from "react-dom";
 import { Space_Grotesk, Space_Mono } from "next/font/google";
 import FloatingThemeToggle from "@/components/ui/FloatingThemeToggle";
@@ -21,7 +21,7 @@ const spaceMono = Space_Mono({
 });
 
 const description =
-  "Software engineer in Delhi NCR building backend systems with Java, Spring Boot, React, and distributed systems. Open to freelance and contract work.";
+  "Aditya Kumar Vaish is a freelance Software Engineer in Delhi NCR building Java, Spring Boot, React, backend, and full-stack web products for startups.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.adityavaish.dev"),
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   applicationName: "Aditya Kumar Vaish Portfolio",
   title: {
-    default: "Aditya Kumar Vaish | Software Engineer in Delhi NCR",
+    default: "Aditya Kumar Vaish | Freelance Software Engineer in Delhi NCR",
     template: "%s | Aditya Kumar Vaish",
   },
   description,
@@ -61,20 +61,30 @@ export const metadata: Metadata = {
     "Software Engineer",
     "Distributed Systems"
   ],
-  authors: [{ name: "Aditya Kumar Vaish", url: "https://adityavaish.dev" }],
+  authors: [{ name: "Aditya Kumar Vaish", url: "https://www.adityavaish.dev" }],
   creator: "Aditya Kumar Vaish",
+  publisher: "Aditya Kumar Vaish",
+  category: "technology",
+  formatDetection: { telephone: false },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://www.adityavaish.dev",
-    title: "Aditya Kumar Vaish | Software Engineer in Delhi NCR",
+    title: "Aditya Kumar Vaish | Freelance Software Engineer in Delhi NCR",
     description,
     siteName: "Aditya Kumar Vaish Portfolio",
+    images: [{
+      url: "https://www.adityavaish.dev/opengraph-image",
+      width: 1200,
+      height: 630,
+      alt: "Aditya Kumar Vaish — Freelance Software Engineer",
+    }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aditya Kumar Vaish | Software Engineer in Delhi NCR",
+    title: "Aditya Kumar Vaish | Freelance Software Engineer in Delhi NCR",
     description,
+    images: ["https://www.adityavaish.dev/twitter-image"],
   },
   robots: {
     index: true,
@@ -87,6 +97,13 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#1b1b1d" },
+  ],
 };
 
 export default function RootLayout({

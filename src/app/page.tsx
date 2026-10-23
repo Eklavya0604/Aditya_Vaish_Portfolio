@@ -21,6 +21,18 @@ const jsonLd = [
   },
   {
     "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${SITE}/#webpage`,
+    name: "Aditya Kumar Vaish | Freelance Software Engineer in Delhi NCR",
+    url: SITE,
+    description:
+      "Aditya Kumar Vaish is a freelance Software Engineer in Delhi NCR building Java, Spring Boot, React, backend, and full-stack web products for startups.",
+    inLanguage: "en",
+    isPartOf: { "@id": `${SITE}/#website` },
+    about: { "@id": `${SITE}/#person` },
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "Person",
     "@id": `${SITE}/#person`,
     name: "Aditya Kumar Vaish",
@@ -83,6 +95,10 @@ const jsonLd = [
       "SQL",
       "Backend Development",
       "Computer Science",
+      "Full Stack Development",
+      "PostgreSQL",
+      "MongoDB",
+      "Software Testing",
     ],
   },
 ];
